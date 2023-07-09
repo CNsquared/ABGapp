@@ -28,12 +28,12 @@ class MyCustomForm extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-          child: TextField(
-            decoration: InputDecoration(
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: TextFormField(
+            decoration: const InputDecoration(
               border: OutlineInputBorder(),
-              hintText: 'Enter a search term',
+              labelText: 'Tax',
             ),
           ),
         ),
@@ -42,7 +42,7 @@ class MyCustomForm extends StatelessWidget {
           child: TextFormField(
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
-              labelText: 'Enter your username',
+              labelText: 'Tip',
             ),
           ),
         ),
