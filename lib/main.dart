@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+
 void main() {
   runApp(const MaterialApp(
     title: 'Navigation Basics',
@@ -14,11 +15,6 @@ class FirstRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Color.fromARGB(255, 238, 232, 222),
-      //   forceMaterialTransparency: true,
-      //   // title: const Text('Homescreen'),
-      // ),
       body: Center(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
