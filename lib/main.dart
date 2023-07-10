@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+<<<<<<< HEAD
 void main() {
   runApp(const MaterialApp(
     title: 'Navigation Basics',
     home: FirstRoute(),
   ));
 }
+=======
+
+void main() => runApp(const MyApp());
+>>>>>>> 092eeb11b83e422179d68b6daa98c15d7dc0cd47
 
 class FirstRoute extends StatelessWidget {
   const FirstRoute({super.key});
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     return Scaffold(
       // appBar: AppBar(
       //   backgroundColor: Color.fromARGB(255, 238, 232, 222),
@@ -112,11 +118,22 @@ class FirstRoute extends StatelessWidget {
       //   ),
       // ),
       
+=======
+    const appTitle = 'ABG App';
+    return MaterialApp(
+      title: appTitle,
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text(appTitle),
+        ),
+        body: const MyCustomForm(),
+>>>>>>> 092eeb11b83e422179d68b6daa98c15d7dc0cd47
       ),
     );
   }
 }
 
+<<<<<<< HEAD
 class SecondRoute extends StatelessWidget {
   const SecondRoute({super.key});
 
@@ -183,4 +200,57 @@ class ThirdRoute extends StatelessWidget {
     )
     );
   }
+=======
+class MyCustomForm extends StatelessWidget {
+  const MyCustomForm({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 30),
+          child: TextFormField(
+            style: TextStyle(fontSize: 20),
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Tax',
+              prefixIcon: Padding(
+                        padding: EdgeInsetsDirectional.only(start: 20, top: 10),
+                        child: Text("\$",
+                                    style: TextStyle(fontSize: 25),)
+                        ), 
+            ),
+            keyboardType: const TextInputType.numberWithOptions(decimal: true),
+            inputFormatters:[ 
+              FilteringTextInputFormatter.allow(RegExp(r'^(\d+)?\.?\d{0,2}')),
+             ],
+        
+
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 0),
+          child: TextFormField(
+            style: TextStyle(fontSize: 20),
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Tip',
+              prefixIcon: Padding(
+                        padding: EdgeInsetsDirectional.only(start: 20, top: 10),
+                        child: Text("\$",
+                                    style: TextStyle(fontSize: 25),)
+                        ), 
+            ),
+            keyboardType: const TextInputType.numberWithOptions(decimal: true),
+            inputFormatters: [ FilteringTextInputFormatter.allow(RegExp(r'^(\d+)?\.?\d{0,2}')),
+            ],
+            
+          ),
+        ),
+      ],
+    );
+  }
+>>>>>>> 092eeb11b83e422179d68b6daa98c15d7dc0cd47
 }
