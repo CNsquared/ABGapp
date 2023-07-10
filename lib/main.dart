@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MaterialApp(
@@ -19,13 +20,49 @@ class FirstRoute extends StatelessWidget {
       //   // title: const Text('Homescreen'),
       // ),
       body: Center(
-        child: Container(
-          height: 5500.0,
-          width: 1000,
-          color: Color.fromARGB(255,255,248,231),
-        child: Align(
-          alignment: Alignment.bottomCenter,
-          child: ElevatedButton(
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: TextFormField(
+            style: TextStyle(fontSize: 20),
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Tax',
+              prefixIcon: Padding(
+                        padding: EdgeInsetsDirectional.only(start: 20, top: 10),
+                        child: Text("\$",
+                                    style: TextStyle(fontSize: 25),)
+                        ), 
+            ),
+            keyboardType: const TextInputType.numberWithOptions(decimal: true),
+            inputFormatters:[ 
+              FilteringTextInputFormatter.allow(RegExp(r'^(\d+)?\.?\d{0,2}')),
+             ],
+        
+
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: TextFormField(
+            style: TextStyle(fontSize: 20),
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Tip',
+              prefixIcon: Padding(
+                        padding: EdgeInsetsDirectional.only(start: 20, top: 10),
+                        child: Text("\$",
+                                    style: TextStyle(fontSize: 25),)
+                        ), 
+            ),
+            keyboardType: const TextInputType.numberWithOptions(decimal: true),
+            inputFormatters: [ FilteringTextInputFormatter.allow(RegExp(r'^(\d+)?\.?\d{0,2}')),
+            ],
+            
+          ),
+        ),
+        ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: Color.fromARGB(255, 87,78,78),
             ),
@@ -41,8 +78,40 @@ class FirstRoute extends StatelessWidget {
               );
             },
           ),
-        ),
-      ),
+      ],)
+        
+        
+        
+        
+        
+        
+        
+        
+      //   Container(
+      //     height: 5500.0,
+      //     width: 1000,
+      //     color: Color.fromARGB(255,255,248,231),
+      //   child: Align(
+      //     alignment: Alignment.bottomCenter,
+      //     child: ElevatedButton(
+      //       style: ElevatedButton.styleFrom(
+      //         backgroundColor: Color.fromARGB(255, 87,78,78),
+      //       ),
+      //       child: const Text(
+      //       'Submit',
+      //       style: TextStyle(color: Color.fromARGB(255, 238, 232, 222)),
+            
+      //       ),
+      //       onPressed: () {
+      //         Navigator.push(
+      //           context,
+      //           MaterialPageRoute(builder: (context) => const SecondRoute()),
+      //         );
+      //       },
+      //     ),
+      //   ),
+      // ),
+      
       ),
     );
   }
