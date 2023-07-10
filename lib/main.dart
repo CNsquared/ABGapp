@@ -101,53 +101,71 @@ class SecondRoute extends StatelessWidget {
           color: Color.fromARGB(255,255,248,231),
         child: Align(
           alignment: Alignment.center,
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-              backgroundColor: Color.fromARGB(255, 87,78,78),
-            ),
-          onPressed: () {
-            Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const ThirdRoute())
-          );
-          },
-          child: const Text('Confirm?'),
+          child: FloatingActionButton(
+  // When the user presses the button, show an alert dialog containing
+  // the text that the user has entered into the text field.
+  onPressed: () {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          // Retrieve the text that the user has entered by using the
+          // TextEditingController.
+          content: Text("Calculated Total"),
+        );
+      },
+    );
+  },
+  tooltip: 'Show me the value!',
+  child: const Icon(Icons.text_fields),
+),
+        // child: ElevatedButton(
+        //   style: ElevatedButton.styleFrom(
+        //       backgroundColor: Color.fromARGB(255, 87,78,78),
+        //     ),
+        //   onPressed: () {
+        //     Navigator.push(
+        //     context,
+        //     MaterialPageRoute(builder: (context) => const ThirdRoute())
+        //   );
+        //   },
+          //child: const Text('Confirm?'),
         ),
       ),
         ),
-      ),
+      //),
     );
   }
 }
 
-class ThirdRoute extends StatelessWidget {
-  const ThirdRoute({super.key});
+// class ThirdRoute extends StatelessWidget {
+//   const ThirdRoute({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-    body: Center(
-      child: Container(
-        height: 5500.0,
-          width: 10000,
-          color: Color.fromARGB(255,255,248,231),
-          child: Align (
-            alignment: Alignment.center,
-    child: ElevatedButton(
-      style: ElevatedButton.styleFrom(
-              backgroundColor: Color.fromARGB(255, 87,78,78),
-            ),
-      onPressed: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const FirstRoute())
-          );
-        },
-        child: const Text("final button lol"),
-        )
-      )
-      )
-    )
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//     body: Center(
+//       child: Container(
+//         height: 5500.0,
+//           width: 10000,
+//           color: Color.fromARGB(255,255,248,231),
+//           child: Align (
+//             alignment: Alignment.center,
+//     child: ElevatedButton(
+//       style: ElevatedButton.styleFrom(
+//               backgroundColor: Color.fromARGB(255, 87,78,78),
+//             ),
+//       onPressed: () {
+//         Navigator.push(
+//             context,
+//             MaterialPageRoute(builder: (context) => const FirstRoute())
+//           );
+//         },
+//         child: const Text("final button lol"),
+//         )
+//       )
+//       )
+//     )
+//     );
+//   }
+// }
