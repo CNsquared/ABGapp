@@ -91,7 +91,7 @@ class SecondRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Confirmation Screen'),
+        title: const Text(''),
         backgroundColor: Color.fromARGB(255, 87,78,78),
       ),
       body: Center(
@@ -100,24 +100,25 @@ class SecondRoute extends StatelessWidget {
           width: 10000,
           color: Color.fromARGB(255,255,248,231),
         child: Align(
-          alignment: Alignment.center,
+          alignment: Alignment(.85,.9),
           child: FloatingActionButton(
+            backgroundColor: Color.fromARGB(255,87,78,78),
   // When the user presses the button, show an alert dialog containing
   // the text that the user has entered into the text field.
-  onPressed: () {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
+            onPressed: () {
+            showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
           // Retrieve the text that the user has entered by using the
           // TextEditingController.
-          content: Text("Calculated Total"),
+              content: Text("Calculated Total"),
         );
       },
     );
   },
   tooltip: 'Show me the value!',
-  child: const Icon(Icons.text_fields),
+  child: const Icon(Icons.monetization_on),
 ),
         // child: ElevatedButton(
         //   style: ElevatedButton.styleFrom(
