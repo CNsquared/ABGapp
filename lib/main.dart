@@ -105,18 +105,28 @@ class SecondRoute extends StatelessWidget {
             backgroundColor: Color.fromARGB(255,87,78,78),
   // When the user presses the button, show an alert dialog containing
   // the text that the user has entered into the text field.
-            onPressed: () {
-            showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-          // Retrieve the text that the user has entered by using the
-          // TextEditingController.
-              content: Text("Calculated Total"),
-        );
-      },
-    );
-  },
+            onPressed: () => showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('Title'),
+          shape: RoundedRectangleBorder(
+    borderRadius:
+      BorderRadius.all(
+        Radius.circular(10.0))),
+          backgroundColor: Color.fromARGB(255, 255, 248, 231),
+          content: const Text('Description'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'Cancel'),
+              child: const Text('Clear'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('Edit'),
+            ),
+          ],
+        ),
+      ),
   tooltip: 'Show me the value!',
   child: const Icon(Icons.monetization_on),
 ),
