@@ -31,7 +31,7 @@ class MyCustomForm extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 30),
           child: TextFormField(
             style: TextStyle(fontSize: 20),
             decoration: const InputDecoration(
@@ -52,7 +52,7 @@ class MyCustomForm extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 0),
           child: TextFormField(
             style: TextStyle(fontSize: 20),
             decoration: const InputDecoration(
