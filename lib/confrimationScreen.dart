@@ -26,7 +26,7 @@ class confrimationScreen extends StatelessWidget {
                 builder: (BuildContext context) => AlertDialog(
                   title: const Text('Title'),
                   shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(90.0))),
+                      borderRadius: BorderRadius.all(Radius.circular(15.0))),
                   backgroundColor: const Color.fromARGB(255, 255, 248, 231),
                   content: const Text('Description'),
                   actions: <Widget>[
