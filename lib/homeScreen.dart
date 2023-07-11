@@ -35,7 +35,8 @@ class HomeScreen extends StatelessWidget {
           children: <Widget>[
             homeScreenFactory.createTextInput("Tip", formState.tipController),
             homeScreenFactory.createTextInput("Tax", formState.taxController),
-            homeScreenFactory.createSubmit(context),
+            homeScreenFactory.createTextInput("Tip", formState.displayController),
+            homeScreenFactory.createSubmit(context, formState.saveData),
             ],
           ),
           ),

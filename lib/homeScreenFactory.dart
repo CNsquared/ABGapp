@@ -41,7 +41,7 @@ class homeScreenFactory {
   }
 
   
-  static ElevatedButton createSubmit(BuildContext context) {
+  static ElevatedButton createSubmit(BuildContext context, Function saveData) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: Color.fromARGB(255, 87, 78, 78),
@@ -50,14 +50,13 @@ class homeScreenFactory {
         'Submit',
         style: TextStyle(color: Color.fromARGB(255, 238, 232, 222)),
       ),
-      onPressed: (){fu();},
-      // {
-        
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(builder: (context) => const confrimationScreen()),
-          // );
-      //},
+      onPressed: (){
+        saveData();
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const confrimationScreen()),
+        );
+      },
     );
   }
 
