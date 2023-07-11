@@ -1,10 +1,13 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:abg_app/homeScreenFactory.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:abg_app/main.dart';
+import 'dart:developer';
 
 
 
@@ -15,8 +18,6 @@ class HomeScreen extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-
- 
    return Scaffold(
       body: Center(
           child: Column(
@@ -24,7 +25,8 @@ class HomeScreen extends StatelessWidget {
         children: <Widget>[
           homeScreenFactory.createTextInput("Tip", formState.tipController),
           homeScreenFactory.createTextInput("Tax", formState.taxController),
-          homeScreenFactory.createSubmit(context),
+          homeScreenFactory.createTextInput("Tip", formState.displayController),
+          homeScreenFactory.createSubmit(context, formState.saveData),
           
         ],
       )),
@@ -34,13 +36,16 @@ class HomeScreen extends StatelessWidget {
 
 }
 
-// Define a corresponding State class.
 // This class holds the data related to the Form.
 class _MyCustomFormState extends ChangeNotifier {
   // Create a text controller and use it to retrieve the current value
   // of the TextField.
   final taxController = TextEditingController();
   final tipController = TextEditingController();
+  final displayController = TextEditingController();
+
+  var tax;
+  var tip;
   
   @override
   void dispose() {
@@ -48,6 +53,16 @@ class _MyCustomFormState extends ChangeNotifier {
     taxController.dispose();
     tipController.dispose();
     super.dispose();
+  }
+
+  void saveData(){
+    
+    tax = taxController.text;
+    tip = tipController.text;
+    log("it work");
+
+    notifyListeners();
+
   }
 
 }

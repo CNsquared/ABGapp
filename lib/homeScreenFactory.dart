@@ -6,8 +6,10 @@ import 'package:provider/provider.dart';
 
 import 'confrimationScreen.dart';
 import 'main.dart';
+import 'dart:developer'; 
 
 class homeScreenFactory {
+
   static Padding createTextInput(String? inputName, TextEditingController controller) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
@@ -33,7 +35,7 @@ class homeScreenFactory {
     );
   }
 
-  static ElevatedButton createSubmit(BuildContext context) {
+  static ElevatedButton createSubmit(BuildContext context, Function fu) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: Color.fromARGB(255, 87, 78, 78),
@@ -42,13 +44,14 @@ class homeScreenFactory {
         'Submit',
         style: TextStyle(color: Color.fromARGB(255, 238, 232, 222)),
       ),
-      onPressed: () {
-        Navigator.push(
-          context,
-
-          MaterialPageRoute(builder: (context) => const confrimationScreen()),
-        );
-      },
+      onPressed: (){fu();},
+      // {
+        
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => const confrimationScreen()),
+          // );
+      //},
     );
   }
 
