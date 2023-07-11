@@ -19,8 +19,12 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
    return Scaffold(
-      body: Center(
-          child: Column(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(image: AssetImage("images/chaewon.jpeg"), fit: BoxFit.cover )
+        ),
+        child:Center(
+        child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           homeScreenFactory.createTextInput("Tip", formState.tipController),
@@ -29,7 +33,11 @@ class HomeScreen extends StatelessWidget {
           homeScreenFactory.createSubmit(context, formState.saveData),
           
         ],
-      )),
+      )), )
+      
+      
+      
+      
     );
        
   }
