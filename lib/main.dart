@@ -21,7 +21,7 @@ class AbgApp extends StatelessWidget{
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
         ),
-        home: const HomeScreen(),
+        home: HomeScreen(),
       ),
     );
   }
@@ -34,8 +34,8 @@ class AbgAppState extends ChangeNotifier {
   var taxValue;
 
   void submitTaxTip(){
-   
-    
+
+
   }
   
 }
