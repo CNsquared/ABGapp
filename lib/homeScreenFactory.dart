@@ -6,8 +6,10 @@ import 'package:provider/provider.dart';
 
 import 'confrimationScreen.dart';
 import 'main.dart';
+import 'dart:developer'; 
 
 class homeScreenFactory {
+
   static Padding createTextInput(String? inputName, TextEditingController controller) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 16),
@@ -48,13 +50,14 @@ class homeScreenFactory {
         'Submit',
         style: TextStyle(color: Color.fromARGB(255, 238, 232, 222)),
       ),
-      onPressed: () {
-        Navigator.push(
-          context,
-
-          MaterialPageRoute(builder: (context) => const confrimationScreen()),
-        );
-      },
+      onPressed: (){fu();},
+      // {
+        
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => const confrimationScreen()),
+          // );
+      //},
     );
   }
 
