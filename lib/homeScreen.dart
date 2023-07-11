@@ -22,7 +22,16 @@ class HomeScreen extends StatelessWidget {
       body: Container(
         alignment: Alignment.center,
         color: const Color.fromARGB(255, 238, 232, 222),
-          child: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children:<Widget>[
+              Text(
+                "Log-It",
+                style: TextStyle(fontSize: 32,
+                ),                
+              ),
+              SizedBox(height: 30),
+              Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               color: const Color.fromARGB(255, 225, 210, 173),
@@ -33,13 +42,15 @@ class HomeScreen extends StatelessWidget {
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            homeScreenFactory.createTextInput("Tip", formState.tipController),
+            homeScreenFactory.createTextInput("People", formState.tipController),
             homeScreenFactory.createTextInput("Tax", formState.taxController),
             homeScreenFactory.createTextInput("Tip", formState.displayController),
             homeScreenFactory.createSubmit(context, formState.saveData),
             ],
           ),
-          ),
+          ),],
+            ),
+          
         ),
       );
        

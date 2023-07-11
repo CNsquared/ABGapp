@@ -6,11 +6,11 @@ import 'package:provider/provider.dart';
 
 import 'confrimationScreen.dart';
 import 'main.dart';
-import 'dart:developer'; 
+import 'dart:developer';
 
 class homeScreenFactory {
-
-  static Padding createTextInput(String? inputName, TextEditingController controller) {
+  static Padding createTextInput(
+      String? inputName, TextEditingController controller) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 16),
       child: TextFormField(
@@ -21,8 +21,7 @@ class homeScreenFactory {
             borderSide: BorderSide(color: Colors.black),
           ),
           focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.black)
-          ),
+              borderSide: BorderSide(color: Colors.black)),
           labelText: inputName,
           prefixIcon: const Padding(
               padding: EdgeInsetsDirectional.only(start: 20, top: 10),
@@ -40,7 +39,6 @@ class homeScreenFactory {
     );
   }
 
-  
   static ElevatedButton createSubmit(BuildContext context, Function saveData) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
@@ -50,7 +48,7 @@ class homeScreenFactory {
         'Submit',
         style: TextStyle(color: Color.fromARGB(255, 238, 232, 222)),
       ),
-      onPressed: (){
+      onPressed: () {
         saveData();
         Navigator.push(
           context,
@@ -59,6 +57,4 @@ class homeScreenFactory {
       },
     );
   }
-
 }
-

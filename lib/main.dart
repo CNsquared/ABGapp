@@ -8,7 +8,7 @@ void main() {
   runApp(const AbgApp());
 }
 
-class AbgApp extends StatelessWidget{
+class AbgApp extends StatelessWidget {
   const AbgApp({super.key});
 
   @override
@@ -25,17 +25,11 @@ class AbgApp extends StatelessWidget{
       ),
     );
   }
-
 }
 
 class AbgAppState extends ChangeNotifier {
-
   var tipValue;
   var taxValue;
 
-  void submitTaxTip(){
-
-
-  }
-  
+  void submitTaxTip() {}
 }
