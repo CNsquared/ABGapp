@@ -18,17 +18,28 @@ class HomeScreen extends StatelessWidget {
 
  
    return Scaffold(
-      body: Center(
-          child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          homeScreenFactory.createTextInput("Tip", formState.tipController),
-          homeScreenFactory.createTextInput("Tax", formState.taxController),
-          homeScreenFactory.createSubmit(context),
-          
-        ],
-      )),
-    );
+      body: Container(
+        alignment: Alignment.center,
+        color: const Color.fromARGB(255, 238, 232, 222),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: const Color.fromARGB(255, 225, 210, 173),
+              ),
+            alignment: Alignment.center,
+            width: 300,
+            height: 400,
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            homeScreenFactory.createTextInput("Tip", formState.tipController),
+            homeScreenFactory.createTextInput("Tax", formState.taxController),
+            homeScreenFactory.createSubmit(context),
+            ],
+          ),
+          ),
+        ),
+      );
        
   }
 

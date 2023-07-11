@@ -10,12 +10,17 @@ import 'main.dart';
 class homeScreenFactory {
   static Padding createTextInput(String? inputName, TextEditingController controller) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 16),
       child: TextFormField(
         controller: controller,
-        style: const TextStyle(fontSize: 20),
+        style: const TextStyle(fontSize: 20, color: Colors.black),
         decoration: InputDecoration(
-          border: const OutlineInputBorder(),
+          enabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.black),
+          ),
+          focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.black)
+          ),
           labelText: inputName,
           prefixIcon: const Padding(
               padding: EdgeInsetsDirectional.only(start: 20, top: 10),
@@ -33,6 +38,7 @@ class homeScreenFactory {
     );
   }
 
+  
   static ElevatedButton createSubmit(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
