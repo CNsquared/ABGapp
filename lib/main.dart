@@ -30,13 +30,13 @@ class AbgApp extends StatelessWidget {
 }
 
 class AbgAppState extends ChangeNotifier {
-  var numPeople;
-  var tipValue;
-  var taxValue;
+  late int numPeople;
+  late double tipValue;
+  late double taxValue;
 
   void setTax(double parse) {
     log(parse.toString());
-    numPeople = parse;
+    taxValue = parse ;
   }
   void setTip(double parse) {
     log(parse.toString());
@@ -44,7 +44,7 @@ class AbgAppState extends ChangeNotifier {
   }
   void setNumPeople(int parse) {
     log(parse.toString());
-    taxValue = parse;
+    numPeople = parse;
   }
 
   void submit(){

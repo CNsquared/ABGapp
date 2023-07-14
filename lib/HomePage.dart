@@ -1,4 +1,5 @@
 
+import 'package:abg_app/FinalScreen.dart';
 import 'package:abg_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +28,7 @@ class _HomePageState extends State<HomePage>{
         page = DataEntryPage();
         break;
       case "finalScreen":
-        page = Placeholder();
+        page = FinalScreen();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');

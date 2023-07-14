@@ -1,4 +1,4 @@
-class paymentCalculator {
+class PaymentCalculator {
   var taxRate;
 
   double splitTax(double totalTax, int numOfPeople) {
@@ -8,7 +8,7 @@ class paymentCalculator {
 
   double _formatTaxReturn(double tax) {
     var tempTax = tax * 100;
-    tempTax = tempTax.ceil() as double;
+    tempTax = tempTax.ceil().toDouble();
     tempTax /= 100;
     return tempTax;
   }
@@ -20,7 +20,7 @@ class paymentCalculator {
 
   double _formatTipReturn(double tip) {
     var tempTip = tip * 100;
-    tempTip = tempTip.ceil() as double;
+    tempTip = tempTip.ceil().toDouble();
     tempTip /= 100;
     return tempTip;
   }
