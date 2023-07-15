@@ -46,13 +46,5 @@ class AbgAppState extends ChangeNotifier {
     numPeople = parse;
   }
 
-  void submit(){
-    if(numPeople != null && tipValue != null && taxValue != null){
-      notifyListeners();
-    }
-    else{
-      log("Not all parameters were filled");
-    }
-    
-  }
+  
 }

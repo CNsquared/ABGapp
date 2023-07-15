@@ -64,6 +64,7 @@ class _HomePageState extends State<HomePage>{
               onPressed: () {
                   if(!_checkFilled(context)){
                       log("not submit because all fields not filled");
+                      return;
                   }
                   setState(() {
                   selectedIndex = "finalScreen";
