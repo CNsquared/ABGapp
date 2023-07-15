@@ -4,7 +4,6 @@ import 'package:abg_app/HomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'HomePage.dart';
 
 void main() {
   runApp(const AbgApp());
@@ -30,9 +29,9 @@ class AbgApp extends StatelessWidget {
 }
 
 class AbgAppState extends ChangeNotifier {
-  late int numPeople;
-  late double tipValue;
-  late double taxValue;
+  int numPeople  = -1;
+  double tipValue = -1;
+  double taxValue = -1;
 
   void setTax(double parse) {
     log(parse.toString());
