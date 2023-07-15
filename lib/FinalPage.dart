@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 
 import 'main.dart';
 
-class FinalScreen extends StatelessWidget{
+class FinalPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     
