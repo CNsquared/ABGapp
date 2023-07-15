@@ -142,12 +142,17 @@ class PeopleEntryForm extends StatelessWidget{
         },
         style: const TextStyle(fontSize: 20, color: Colors.black),
         decoration: InputDecoration(
+          prefixIcon: Padding(
+            padding: const EdgeInsetsDirectional.only(start: 5),
+            child: Icon(Icons.person),
+          ),
           enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.black),
           ),
           focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.black)),
           labelText: "Number of People",
+          
           
         ),
         keyboardType: const TextInputType.numberWithOptions(decimal: true),
