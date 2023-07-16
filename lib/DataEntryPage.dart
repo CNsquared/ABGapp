@@ -50,7 +50,9 @@ class TipEntryForm extends StatelessWidget{
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 16),
       child: TextFormField(
         onChanged: (text) {
-          appState.setTip(double.parse(text));
+          if(text != "") {
+            appState.setTip(double.parse(text));
+          }
         },
         style: const TextStyle(fontSize: 20, color: Colors.black),
         decoration: InputDecoration(
@@ -90,7 +92,9 @@ class TaxEntryForm extends StatelessWidget{
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 16),
       child: TextFormField(
         onChanged: (text) {
-          appState.setTax(double.parse(text));
+          if(text != "") {
+            appState.setTax(double.parse(text));
+          }
         },
         style: const TextStyle(fontSize: 20, color: Colors.black),
         decoration: InputDecoration(
@@ -133,7 +137,9 @@ class PeopleEntryForm extends StatelessWidget{
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 16),
       child: TextFormField(
         onChanged: (text) {
-          appState.setNumPeople(int.parse(text));
+          if(text != "") {
+            appState.setNumPeople(int.parse(text));
+          }
         },
         style: const TextStyle(fontSize: 20, color: Colors.black),
         decoration: InputDecoration(
