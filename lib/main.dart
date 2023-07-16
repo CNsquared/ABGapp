@@ -42,7 +42,7 @@ class AbgAppState extends ChangeNotifier {
     tipValue = parse;
   }
   void setNumPeople(int parse) {
-    log(parse.toString());
+    log("num of peoples set as $parse");
     numPeople = parse;
   }
 

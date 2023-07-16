@@ -25,7 +25,6 @@ class DataEntryPage extends StatelessWidget{
                 TipEntryForm(),
                 TaxEntryForm(),
                 SizedBox(height: 100), 
-                //SubmitButton(),
               ]
           ),
         ),
@@ -36,10 +35,6 @@ class DataEntryPage extends StatelessWidget{
   }
 
 }
-
-
-
-
 
 
 class TipEntryForm extends StatelessWidget{
@@ -75,7 +70,7 @@ class TipEntryForm extends StatelessWidget{
         ),
         keyboardType: const TextInputType.numberWithOptions(decimal: true),
         inputFormatters: [
-          FilteringTextInputFormatter.allow(RegExp(r'^(\d+)?\.?\d{0,2}')),
+          FilteringTextInputFormatter.allow(RegExp(r'(\d+)?\.?\d{0,2}')),
         ],
       ),
     );
@@ -115,7 +110,7 @@ class TaxEntryForm extends StatelessWidget{
         ),
         keyboardType: const TextInputType.numberWithOptions(decimal: true),
         inputFormatters: [
-          FilteringTextInputFormatter.allow(RegExp(r'^(\d+)?\.?\d{0,2}')),
+          FilteringTextInputFormatter.allow(RegExp(r'(\d+)?\.?\d{0,2}')),
         ],
       ),
     );
@@ -152,12 +147,10 @@ class PeopleEntryForm extends StatelessWidget{
           focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.black)),
           labelText: "Number of People",
-          
-          
         ),
-        keyboardType: const TextInputType.numberWithOptions(decimal: true),
+        keyboardType: const TextInputType.numberWithOptions(decimal: false, signed: false),
         inputFormatters: [
-          FilteringTextInputFormatter.allow(RegExp(r"^[0-9]*$")),
+          FilteringTextInputFormatter.allow(RegExp(r"[0-9]")),
         ],
       ),
     );
