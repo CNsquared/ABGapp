@@ -1,5 +1,8 @@
 
 
+import 'dart:developer';
+
+import 'package:abg_app/HomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -8,33 +11,24 @@ import 'main.dart';
 
 class DataEntryPage extends StatelessWidget{
 
+
   @override
   Widget build(BuildContext context) {
     
     return Column(
-      children:<Widget>[ 
-        SizedBox(height: 50), 
-        Card(
-          elevation: 50,
-          child: Column(
-              children: <Widget>[
-                SizedBox(height: 30),
-                Text("Log It", style: TextStyle(fontSize: 32)),
-                SizedBox(height: 30),
-                PeopleEntryForm(),
-                TipEntryForm(),
-                TaxEntryForm(),
-                SizedBox(height: 100), 
-              ]
-          ),
-        ),
-        SizedBox(height: 40),
-      ]
+        children: <Widget>[
+          SizedBox(height: 30),
+          Text("Log It", style: TextStyle(fontSize: 32)),
+          SizedBox(height: 30),
+          PeopleEntryForm(),
+          TipEntryForm(),
+          TaxEntryForm(),
+        ]
     );
 
   }
-
 }
+
 
 
 class TipEntryForm extends StatelessWidget{
@@ -163,22 +157,3 @@ class PeopleEntryForm extends StatelessWidget{
   }
 }
 
-
-class SubmitButton extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Color.fromARGB(255, 87, 78, 78),
-      ),
-      child: const Text(
-        'Submit',
-        style: TextStyle(color: Color.fromARGB(255, 238, 232, 222)),
-      ),
-      onPressed: () {
-        
-
-      },
-    );
-  }
-}

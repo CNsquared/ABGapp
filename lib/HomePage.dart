@@ -11,11 +11,11 @@ import 'DataEntryPage.dart';
 class HomePage extends StatefulWidget{
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomePage> createState() => HomePageState();
 
 }
 
-class _HomePageState extends State<HomePage>{
+class HomePageState extends State<HomePage>{
 
   String selectedIndex = "dataEntry";
 
@@ -24,23 +24,34 @@ class _HomePageState extends State<HomePage>{
    return  appState.taxValue != -1 && appState.tipValue != -1 && appState.numPeople != -1;
   }
 
+  void selectIndex(page){
+    if(_checkFilled(context)) {
+      setState(() {
+      selectedIndex = page;
+    });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-
-   
-
-    //checks if all values have been filled in by the user
-    
-
-   
     //determines which page to load up
-    Widget page;
+    Column page;
+    
     switch (selectedIndex) {
       case "dataEntry":
-        page = DataEntryPage();
+        page = Column(
+          children: [
+            DataEntryPage(),
+            navigationButton("Submit"),   
+          ],
+        ); 
         break;
       case "finalScreen":
-        page = FinalPage();
+        page = Column(
+          children: [
+            FinalPage(),
+          ],
+        ); 
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
@@ -50,36 +61,38 @@ class _HomePageState extends State<HomePage>{
     return Container(
       color: Color.fromARGB(255, 155, 152, 152),
       child: Center(   
-        child: Column(
-          children: [
-            page,
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-              backgroundColor: Color.fromARGB(255, 179, 179, 179),
-              ),
-              child: const Text(
-              'Submit',
-               style: TextStyle(color: Color.fromARGB(255, 238, 232, 222)),
-                  ),
-              onPressed: () {
-                  if(!_checkFilled(context)){
-                      log("not submit because all fields not filled");
-                      return;
-                  }
-                  setState(() {
-                  selectedIndex = "finalScreen";
-                });
-
-
-
-              },
+        child: Padding(
+          padding:  EdgeInsets.fromLTRB(15, 100, 15, 150),
+          child: Card(
+            elevation: 15,
+            child: Column(
+              children: [
+                page,
+              ],
             ),
-          ],
+          ),
         )
       ),
     );
 
   }
 
+  ElevatedButton navigationButton(String hint) {
+    return ElevatedButton(
+            style: ElevatedButton.styleFrom(
+            backgroundColor: Color.fromARGB(255, 179, 179, 179),
+            ),
+            child: Text(
+            hint,
+              style: TextStyle(color: Color.fromARGB(255, 238, 232, 222)),
+                ),
+            onPressed: () {
+              selectIndex("finalScreen");
+            }
+          );
+  }
+
 }
+
+
 

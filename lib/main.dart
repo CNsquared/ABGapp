@@ -33,6 +33,12 @@ class AbgAppState extends ChangeNotifier {
   double tipValue = -1;
   double taxValue = -1;
 
+  void clear(){
+    numPeople = -1;
+    tipValue = -1;
+    taxValue = -1;
+  }
+
   void setTax(double parse) {
     log(parse.toString());
     taxValue = parse ;
