@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -6,12 +7,13 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
 ///Displays the logged transations in [TransactionRecord]
+///
+// TODO Bug dont know how to make so that if the image doesnt exisit it catches expection and shows another image.
 class ViewPicture extends StatelessWidget {
-  late String imagePath;
+  late final String imagePath;
 
   @override
   Widget build(BuildContext context) {
-    var path = getPath();
 
     return Column(
       children: [
@@ -20,7 +22,16 @@ class ViewPicture extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               // If the Future is complete, display the preview.
-              return Image.file(File(snapshot.data!));
+              try {
+                var file = File(snapshot.data!);
+                log("Got the file");
+                var image = Image.file(file);
+                log("created image object");
+                return image;
+              }on PathNotFoundException{
+                log("Expection Caught");
+                return const Center(child: CircularProgressIndicator());
+              }
             } else {
               // Otherwise, display a loading indicator.
               return const Center(child: CircularProgressIndicator());

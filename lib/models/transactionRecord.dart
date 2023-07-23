@@ -31,7 +31,7 @@ class TransactionRecord extends ChangeNotifier {
   // costly operation should proberely be relpleaced with an intialized boolean and then only runs the code if it hasnt before
   Future<void> intializeRecord() async {
 
-    if(initialized){ log("Log file already initialized"); return; };
+    if(initialized){ log("Log file already initialized"); return; }
 
     await _logFile.then((value) {
       try {

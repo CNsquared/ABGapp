@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:abg_app/models/transactionRecord.dart';
 import 'package:abg_app/screens/log.dart';
