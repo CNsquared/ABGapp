@@ -1,12 +1,12 @@
-import 'package:abg_app/models/normalSplitRecipt.dart';
-import 'package:abg_app/paymentCalculator.dart';
+import 'package:abg_app/models/normalSplitState.dart';
+import 'package:abg_app/common/paymentCalculator.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 ///Displays the calculated amount due
 class FinalDisplayPage extends StatelessWidget {
-  late PageController pageController;
+  late final PageController pageController;
   FinalDisplayPage(PageController controller) {
     pageController = controller;
   }
@@ -66,7 +66,7 @@ class FinalDisplayPage extends StatelessWidget {
 class DisplayInputData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var appState = Provider.of<NormalSplitRecipt>(context, listen: false);
+    var appState = Provider.of<NormalSplitState>(context, listen: false);
 
     return Column(children: <Widget>[
       Text("People: ${appState.numPeople}"),
@@ -80,7 +80,7 @@ class DisplayInputData extends StatelessWidget {
 class DisplayAmountDue extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var appState = context.watch<NormalSplitRecipt>();
+    var appState = context.watch<NormalSplitState>();
     var paymentCalculator = PaymentCalculator();
     var amountDue =
         paymentCalculator.splitTax(appState.taxValue, appState.numPeople) +

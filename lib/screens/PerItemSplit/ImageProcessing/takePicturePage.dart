@@ -23,7 +23,10 @@ class TakePicturePageState extends State<TakePicturePage> {
   late CameraController _controller;
   late Future<void> _initializeControllerFuture;
 
-  int picCount = 0;
+  int picCount;
+
+  TakePicturePageState()
+    : picCount = 0;
 
   @override
   void initState() {

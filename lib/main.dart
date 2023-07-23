@@ -1,16 +1,20 @@
+import 'dart:developer';
+
 import 'package:abg_app/models/transactionRecord.dart';
 import 'package:abg_app/screens/log.dart';
 import 'package:abg_app/screens/normalSplit/normalSplit.dart';
-import 'package:abg_app/screens/takePicture/takePicturePage.dart';
-import 'package:abg_app/screens/takePicture/viewPicture.dart';
+import 'package:abg_app/screens/PerItemSplit/ImageProcessing/takePicturePage.dart';
+import 'package:abg_app/screens/PerItemSplit/ImageProcessing/viewPicture.dart';
 import 'package:camera/camera.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+
   runApp(const MyApp());
 }
+
 
 ///Router used to go between different parts of the app
 GoRouter router() {
@@ -58,6 +62,7 @@ class MyApp extends StatelessWidget {
       //Using [GoRouter] to go between pages in the app
       child: MaterialApp.router(
         title: 'Log It',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           useMaterial3: true,
           colorScheme:
@@ -78,40 +83,47 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     //Needs to be set up to look like figma design
     return Scaffold(
-      body: Center(
-        child: SafeArea(
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                ElevatedButton(
-                  onPressed: () {
-                    context.go('/normalSplit');
-                  },
-                  child: Text("Split Tax Tip Evenly"),
-                ),
-                ElevatedButton(
-                  onPressed: () async {
-                    //getting cameras from the device and using the first one
-                    await availableCameras().then(
-                        (value) => context.go('/camera', extra: value[0]));
-                  },
-                  child: Text("Diving Per Item"),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    context.go('/log');
-                  },
-                  child: Text("Past Logs"),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    context.go('/viewImage');
-                  },
-                  child: Text("View Image"),
-                ),
-              ]),
-        ),
+      appBar: AppBar(
+        leading: IconButton(icon: Icon(Icons.sunny), onPressed: () {  },),
+        actions: [IconButton(icon: Icon(Icons.settings), onPressed: () {  },)],
       ),
+      body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Text(
+              'Log It',
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                context.go('/normalSplit');
+              },
+              child: Text("Split Tax Tip Evenly"),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                //getting cameras from the device and using the first one
+                await availableCameras().then(
+                    (value) => context.go('/camera', extra: value[0]));
+              },
+              child: Text("Diving Per Item"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                context.go('/log');
+              },
+              child: Text("Past Logs"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                context.go('/viewImage');
+              },
+              child: Text("View Image"),
+            ),
+          ]),
     );
   }
 }

@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 
 ///Keeps track of user entered information about normal split transactions
-class NormalSplitRecipt extends ChangeNotifier {
+class NormalSplitState extends ChangeNotifier {
   int numPeople = -1;
   double tipValue = -1;
   double taxValue = -1;

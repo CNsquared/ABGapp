@@ -18,26 +18,26 @@ class Log extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          onPressed: () {context.go("/home");},
+          onPressed: () {
+            context.go("/home");
+          },
         ),
       ),
       body: FutureBuilder<void>(
         future: logState.intializeRecord(),
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) { 
-          if(snapshot.connectionState == ConnectionState.done){
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
             return ListView.builder(
-            itemCount: logState.record.length,
-            itemBuilder: (BuildContext context, int index) {
-              return ListTile(
-                title: Text(logState.record[index].iD.toString()),
-              );
-            });
-          }
-          else{
+                itemCount: logState.record.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return ListTile(
+                    title: Text(logState.record[index].iD.toString()),
+                  );
+                });
+          } else {
             return const Center(child: CircularProgressIndicator());
           }
-         },
-     
+        },
       ),
     );
   }

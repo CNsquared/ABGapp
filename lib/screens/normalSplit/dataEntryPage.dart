@@ -1,4 +1,4 @@
-import 'package:abg_app/models/normalSplitRecipt.dart';
+import 'package:abg_app/models/normalSplitState.dart';
 import 'package:abg_app/models/transactionRecord.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 
 ///Takes in user input of what the tax, tip and number of people is
 class DataEntryPage extends StatelessWidget {
-  late PageController pageController;
+  late final PageController pageController;
 
   DataEntryPage(PageController controller) {
     pageController = controller;
@@ -64,7 +64,7 @@ class SubmitButton extends StatelessWidget {
     return ElevatedButton(
         onPressed: () {
           //DESIGN
-          var appState = Provider.of<NormalSplitRecipt>(context, listen: false);
+          var appState = Provider.of<NormalSplitState>(context, listen: false);
           var logState = Provider.of<TransactionRecord>(context, listen: false);
           if (appState.isFilled()) {
             logState.addTransaction(
@@ -77,7 +77,7 @@ class SubmitButton extends StatelessWidget {
   }
 }
 
-///Clear Button that removes the data from [NormalSplitRecipt] state
+///Clear Button that removes the data from [NormalSplitState] state
 
 //Doesnt remove the data from the text entry forms
 class ClearButton extends StatelessWidget {
@@ -90,14 +90,14 @@ class ClearButton extends StatelessWidget {
     return ElevatedButton(
         onPressed: () {
           //DESIGN
-          var appState = Provider.of<NormalSplitRecipt>(context, listen: false);
+          var appState = Provider.of<NormalSplitState>(context, listen: false);
           appState.clear();
         },
         child: Text("Clear"));
   }
 }
 
-///Entry form that take in tip and stores in [NormalSplitRecipt] state
+///Entry form that take in tip and stores in [NormalSplitState] state
 class TipEntryForm extends StatelessWidget {
   const TipEntryForm({
     super.key,
@@ -105,7 +105,7 @@ class TipEntryForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var appState = context.watch<NormalSplitRecipt>();
+    var appState = context.watch<NormalSplitState>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 16),
       child: TextFormField(
@@ -139,7 +139,7 @@ class TipEntryForm extends StatelessWidget {
   }
 }
 
-///Entry form that take in tax and stores in [NormalSplitRecipt] state
+///Entry form that take in tax and stores in [NormalSplitState] state
 class TaxEntryForm extends StatelessWidget {
   const TaxEntryForm({
     super.key,
@@ -147,7 +147,7 @@ class TaxEntryForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var appState = context.watch<NormalSplitRecipt>();
+    var appState = context.watch<NormalSplitState>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 16),
       child: TextFormField(
@@ -181,7 +181,7 @@ class TaxEntryForm extends StatelessWidget {
   }
 }
 
-///Entry form that take in People and stores in [NormalSplitRecipt] state
+///Entry form that take in People and stores in [NormalSplitState] state
 class PeopleEntryForm extends StatelessWidget {
   const PeopleEntryForm({
     super.key,
@@ -189,7 +189,7 @@ class PeopleEntryForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var appState = context.watch<NormalSplitRecipt>();
+    var appState = context.watch<NormalSplitState>();
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 16),
