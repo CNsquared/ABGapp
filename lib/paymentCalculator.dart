@@ -3,12 +3,12 @@ class PaymentCalculator {
 
   double splitTax(double totalTax, int numOfPeople) {
     var splitTax = totalTax / numOfPeople;
-    return _formatTaxReturn(splitTax);
+    return _formatTipReturn(splitTax);
   }
 
   double _formatTaxReturn(double tax) {
     var tempTax = tax * 100;
-    tempTax = tempTax.ceil().toDouble();
+    tempTax = (tempTax.ceil()).toDouble();
     tempTax /= 100;
     return tempTax;
   }
@@ -20,7 +20,7 @@ class PaymentCalculator {
 
   double _formatTipReturn(double tip) {
     var tempTip = tip * 100;
-    tempTip = tempTip.ceil().toDouble();
+    tempTip = (tempTip.ceil()).toDouble();
     tempTip /= 100;
     return tempTip;
   }
