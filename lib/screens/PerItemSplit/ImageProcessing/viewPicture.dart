@@ -8,7 +8,7 @@ import 'package:path_provider/path_provider.dart';
 
 ///Displays the logged transations in [TransactionRecord]
 ///
-// TODO Bug dont know how to make so that if the image doesnt exisit it catches expection and shows another image.
+// TODO #4 Bug dont know how to make so that if the image doesnt exisit it catches expection and shows another image.
 class ViewPicture extends StatelessWidget {
   late final String imagePath;
 

@@ -16,6 +16,10 @@ void main() {
 
 
 ///Router used to go between different parts of the app
+///Brings you to all main components of the app
+// ? Indivual paths inside of these routes can be done with Router or internally
+// ? Currently doing them with a pageView seperately 
+
 GoRouter router() {
   return GoRouter(
     initialLocation: '/home',
@@ -65,7 +69,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           useMaterial3: true,
           colorScheme:
-              //DESGIN TEAM
+              // * design TEAM
               //Create actual theme
               ColorScheme.fromSeed(
                   seedColor: Color.fromARGB(255, 104, 105, 105)),

@@ -84,28 +84,87 @@ class Expense{
 
   //metadata
   int iD;
-  DateTime? date;
-  int numPeople;
+  DateTime date;
+  //int numPeople; //if keep track of people dont need numPeople
 
+  List<Owner>? people;
   List<Item>? items;
+  double tax;
+  double tip;
+  String splittingMethod;
+  
+  List<Owner>? get getPeople => this.people;
 
-  Expense({required this.iD, required this.date, required this.numPeople, List<Item>? items})
-    : items = items ?? List.empty(growable: true);
+  set setPeople(List<Owner>? people) => this.people = people;
+
+  get getItems => this.items;
+
+  set setItems( items) => this.items = items;
+
+  get getTax => this.tax;
+
+  set setTax( tax) => this.tax = tax;
+
+  get getTip => this.tip;
+
+  set setTip( tip) => this.tip = tip;
+
+  Expense({required this.iD, required this.date, required this.splittingMethod, required this.tax, required this.tip, List<Item>? items, List<Owner>? people})
+    : items = items ?? List.empty(growable: true),
+      people = people ?? List.empty(growable: true);
+
+  
 
 
 }
 
 class Item{
 
-  String? owner;
+  Owner? owner;
   String name;
   double cost;
 
   Item({required this.name, this.owner, required this.cost});
 
+  void setOwner(Owner owner){
+    this.owner = owner;
+  }
+
+
+
+
+}
+
+class Owner{
+
+  List<Item> items;
+  String name;
+  double additionalCost;
+
+  //String spliting method
+
+  Owner({required this.name, List<Item>? items, this.additionalCost = 0})
+    : items = items ?? List.empty(growable: true);
+
+  // ! In order to update total cost the method needs to know how to spilt the cost, wether spilting the tax and tip evenly or per item
+  // ! Design choice of passing down that information
+  void _updateTotalCost(){
+
+
+  }
+
+
+
+  void addItem(Item item){
+    items.add(item);
+    _updateTotalCost();
+  }
+
+
 }
 
 
+// ! DO NOT USE DEPRECATING CLASS
 ///Data structure that hold information abotu each transaction
 class _Transaction {
 
@@ -120,10 +179,11 @@ class _Transaction {
 
   _Transaction.fromJson(Map<String, dynamic> json)
       : iD = json['iD'] as int,
+        date = json['date'] as DateTime,
         tax = json['tax'] as double,
         tip = json['tip'] as double,
         numPeople = json['numPeople'] as int;
 
   Map<String, dynamic> toJson() =>
-      {'iD': iD, 'tax': tax, 'tip': tip, 'numPeople': numPeople};
+      {'iD': iD, 'date': date, 'tax': tax, 'tip': tip, 'numPeople': numPeople};
 }
