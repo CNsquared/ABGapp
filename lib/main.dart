@@ -1,4 +1,3 @@
-
 import 'package:abg_app/models/transactionRecord.dart';
 import 'package:abg_app/screens/log.dart';
 import 'package:abg_app/screens/normalSplit/normalSplit.dart';
@@ -10,15 +9,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-
   runApp(const MyApp());
 }
-
 
 ///Router used to go between different parts of the app
 ///Brings you to all main components of the app
 // ? Indivual paths inside of these routes can be done with Router or internally
-// ? Currently doing them with a pageView seperately 
+// ? Currently doing them with a pageView seperately
 
 GoRouter router() {
   return GoRouter(
@@ -81,14 +78,24 @@ class MyApp extends StatelessWidget {
 }
 
 ///Home page of the app that allows navigation between different app functionalities
+// TODO add animations to go router
+
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //Needs to be set up to look like figma design
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(icon: Icon(Icons.sunny), onPressed: () {  },),
-        actions: [IconButton(icon: Icon(Icons.settings), onPressed: () {  },)],
+        leading: IconButton(
+          icon: Icon(Icons.sunny),
+          onPressed: () {},
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.settings),
+            onPressed: () {},
+          )
+        ],
       ),
       body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -102,27 +109,27 @@ class HomePage extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                context.go('/normalSplit');
+                context.push('/normalSplit');
               },
               child: Text("Split Tax Tip Evenly"),
             ),
             ElevatedButton(
               onPressed: () async {
                 //getting cameras from the device and using the first one
-                await availableCameras().then(
-                    (value) => context.go('/camera', extra: value[0]));
+                await availableCameras()
+                    .then((value) => context.push('/camera', extra: value[0]));
               },
               child: Text("Diving Per Item"),
             ),
             ElevatedButton(
               onPressed: () {
-                context.go('/log');
+                context.push('/log');
               },
               child: Text("Past Logs"),
             ),
             ElevatedButton(
               onPressed: () {
-                context.go('/viewImage');
+                context.push('/viewImage');
               },
               child: Text("View Image"),
             ),

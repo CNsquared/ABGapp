@@ -1,17 +1,17 @@
-import 'package:abg_app/models/normalSplitState.dart';
 import 'package:abg_app/common/paymentCalculator.dart';
+import 'package:abg_app/models/transactionRecord.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 ///Displays the calculated amount due
 class FinalDisplayPage extends StatelessWidget {
-  late final PageController pageController;
-  FinalDisplayPage(PageController controller) {
-    pageController = controller;
-  }
+  final PageController pageController;
+
+  FinalDisplayPage({required this.pageController});
 
   @override
+  // TODO needs full redesign
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
       SizedBox(height: 50),
@@ -55,7 +55,7 @@ class FinalDisplayPage extends StatelessWidget {
             pageController.animateToPage(0,
                 duration: Duration(milliseconds: 250), curve: Curves.easeIn);
           },
-          child: Icon(Icons.home),
+          child: Icon(Icons.arrow_back),
         ),
       ])
     ]);
@@ -66,12 +66,13 @@ class FinalDisplayPage extends StatelessWidget {
 class DisplayInputData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var appState = Provider.of<NormalSplitState>(context, listen: false);
+    var logState = Provider.of<TransactionRecord>(context, listen: false);
+    var latestTransaction = logState.expenses[logState.expenses.length - 1];
 
     return Column(children: <Widget>[
-      Text("People: ${appState.numPeople}"),
-      Text("Tip ${appState.tipValue}"),
-      Text("Tax: ${appState.taxValue}")
+      Text("People: ${latestTransaction.people.length}"),
+      Text("Tip ${latestTransaction.tip}"),
+      Text("Tax: ${latestTransaction.tax}")
     ]);
   }
 }
@@ -80,11 +81,14 @@ class DisplayInputData extends StatelessWidget {
 class DisplayAmountDue extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var appState = context.watch<NormalSplitState>();
+    var logState = Provider.of<TransactionRecord>(context, listen: false);
+    var latestTransaction = logState.expenses[logState.expenses.length - 1];
+
     var paymentCalculator = PaymentCalculator();
-    var amountDue =
-        paymentCalculator.splitTax(appState.taxValue, appState.numPeople) +
-            paymentCalculator.splitTip(appState.tipValue, appState.numPeople);
+    var amountDue = paymentCalculator.splitTax(
+            latestTransaction.tax, latestTransaction.people.length) +
+        paymentCalculator.splitTip(
+            latestTransaction.tip, latestTransaction.people.length);
     return Text(
       "Amount Due: ${amountDue.toStringAsFixed(2)}",
     );

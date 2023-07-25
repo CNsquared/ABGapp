@@ -18,15 +18,14 @@ class TakePicturePage extends StatefulWidget {
   @override
   TakePicturePageState createState() => TakePicturePageState();
 }
-
+//TODO make it only ask for camera premission instead of mic and camera 
 class TakePicturePageState extends State<TakePicturePage> {
   late CameraController _controller;
   late Future<void> _initializeControllerFuture;
 
   int picCount;
 
-  TakePicturePageState()
-    : picCount = 0;
+  TakePicturePageState() : picCount = 0;
 
   @override
   void initState() {

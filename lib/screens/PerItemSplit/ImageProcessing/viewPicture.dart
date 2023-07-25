@@ -14,7 +14,6 @@ class ViewPicture extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
       children: [
         FutureBuilder<String>(
@@ -28,7 +27,7 @@ class ViewPicture extends StatelessWidget {
                 var image = Image.file(file);
                 log("created image object");
                 return image;
-              }on PathNotFoundException{
+              } on PathNotFoundException {
                 log("Expection Caught");
                 return const Center(child: CircularProgressIndicator());
               }

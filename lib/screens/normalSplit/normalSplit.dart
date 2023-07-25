@@ -1,4 +1,3 @@
-import 'package:abg_app/models/normalSplitState.dart';
 import 'package:abg_app/screens/normalSplit/dataEntryPage.dart';
 import 'package:abg_app/screens/normalSplit/finalDisplayPage.dart';
 import 'package:flutter/material.dart';
@@ -13,19 +12,18 @@ class NormalSplit extends StatelessWidget {
   Widget build(BuildContext context) {
     final PageController controller = PageController(initialPage: 0);
 
-    return ChangeNotifierProvider(
-      create: (BuildContext context) => NormalSplitState(),
-      child: Container(
-        //DESGIN TEAM
-        padding: EdgeInsets.all(8.0),
-        //DESGIN TEAM
-        color: Colors.grey,
-        child: PageView(controller: controller, children: <Widget>[
-          DataEntryPage(controller),
-          FinalDisplayPage(controller),
-          Placeholder(),
-        ]),
-      ),
+    return Container(
+      //*DESGIN TEAM
+      padding: EdgeInsets.all(8.0),
+      //*DESGIN TEAM
+      color: Colors.grey,
+      child: PageView(controller: controller, children: <Widget>[
+        DataEntryPage(
+          pageController: controller),
+        FinalDisplayPage(
+          pageController: controller,
+        ),
+      ]),
     );
   }
 }

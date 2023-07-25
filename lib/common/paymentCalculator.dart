@@ -1,6 +1,7 @@
 class PaymentCalculator {
   var taxRate;
 
+  //TODO overload methods to take in different splitting payment methods
   double splitTax(double totalTax, int numOfPeople) {
     var splitTax = totalTax / numOfPeople;
     return _formatTipReturn(splitTax);
