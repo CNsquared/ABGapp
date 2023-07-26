@@ -18,8 +18,7 @@ class NormalSplit extends StatelessWidget {
       //*DESGIN TEAM
       color: Colors.grey,
       child: PageView(controller: controller, children: <Widget>[
-        DataEntryPage(
-          pageController: controller),
+        DataEntryPage(pageController: controller),
         FinalDisplayPage(
           pageController: controller,
         ),

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -9,6 +11,9 @@ class Log extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var logState = context.watch<TransactionRecord>();
+    var expenses = logState.expenses;
+
+    log("log of expenses: ${logState.expenses.elementAt(0) }");
 
     //Currently only shows Id number of each transaciton
     //Future show tax tip, num people, date? maybe drop down menu when you click on them to show more details
@@ -23,22 +28,18 @@ class Log extends StatelessWidget {
           },
         ),
       ),
-      body: FutureBuilder<void>(
-        future: logState.intializeRecord(),
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            return ListView.builder(
-                itemCount: logState.record.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                    title: Text(logState.record[index].iD.toString()),
-                  );
-                });
-          } else {
-            return const Center(child: CircularProgressIndicator());
-          }
-        },
-      ),
+      body: ListView.builder(
+          itemCount: expenses.length,
+          prototypeItem: ListTile(
+            title: Text(expenses.first.iD.toString()),
+          ),
+          itemBuilder: (context, index) {
+            return ListTile(
+              title: Text(expenses[index].iD.toString()),
+            );
+          },
+        ),
+          
     );
   }
 }

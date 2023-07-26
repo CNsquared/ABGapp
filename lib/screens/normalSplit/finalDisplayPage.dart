@@ -70,7 +70,7 @@ class DisplayInputData extends StatelessWidget {
     var latestTransaction = logState.expenses[logState.expenses.length - 1];
 
     return Column(children: <Widget>[
-      Text("People: ${latestTransaction.people.length}"),
+      Text("People: ${latestTransaction.numPeople}"),
       Text("Tip ${latestTransaction.tip}"),
       Text("Tax: ${latestTransaction.tax}")
     ]);
@@ -86,9 +86,9 @@ class DisplayAmountDue extends StatelessWidget {
 
     var paymentCalculator = PaymentCalculator();
     var amountDue = paymentCalculator.splitTax(
-            latestTransaction.tax, latestTransaction.people.length) +
+            latestTransaction.tax, latestTransaction.numPeople) +
         paymentCalculator.splitTip(
-            latestTransaction.tip, latestTransaction.people.length);
+            latestTransaction.tip, latestTransaction.numPeople);
     return Text(
       "Amount Due: ${amountDue.toStringAsFixed(2)}",
     );

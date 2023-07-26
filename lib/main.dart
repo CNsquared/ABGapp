@@ -87,6 +87,8 @@ class MyApp extends StatelessWidget {
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var logState = context.watch<TransactionRecord>();
+    logState.intializeRecord();
     //Needs to be set up to look like figma design
     return Scaffold(
       appBar: AppBar(

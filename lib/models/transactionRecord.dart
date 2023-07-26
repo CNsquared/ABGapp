@@ -11,11 +11,10 @@ import 'package:path_provider/path_provider.dart';
 ///Keeps track of all transations
 class TransactionRecord extends ChangeNotifier {
   bool initialized;
-  late List<_Transaction> record; // !Remove allow null after testing
-  late List<Expense> expenses;
+  //late List<_Transaction> record; // !Remove allow null after testing
+  late List expenses;
 
   int iD;
-
   TransactionRecord()
       : initialized = false,
         iD = 0;
@@ -46,17 +45,16 @@ class TransactionRecord extends ChangeNotifier {
         String jsonString = value.readAsStringSync();
         if (jsonString != "") {
           List json = jsonDecode(jsonString);
-          record =
-              json.map((tagJson) => _Transaction.fromJson(tagJson)).toList();
-          log("Set record as ${record.toString()}");
+          expenses = json.map((tagJson) => Expense.fromJson(tagJson)).toList();
+          log("Set expenses as ${expenses.toString()}");
         } else {
-          record = List.empty(growable: true);
+          expenses = List.empty(growable: true);
           log("Log file blank");
         }
       } on PathNotFoundException {
         log("created log file");
         value.createSync(recursive: true);
-        record = List.empty(growable: true);
+        expenses = List.empty(growable: true);
       }
       initialized = true;
       log("intialization of log file complete");
@@ -72,10 +70,11 @@ class TransactionRecord extends ChangeNotifier {
         tax: tax,
         tip: tip,
         numPeople: numPeople);
+    log("adding new expense to tracker");
     expenses.add(expense);
 
-    var transaction = _Transaction(iD, tax, tip, numPeople, DateTime.now());
-    record.add(transaction);
+    //var transaction = _Transaction(iD, tax, tip, numPeople, DateTime.now());
+    //record.add(transaction);
 
     iD++;
     //writes to file every time maybe only do it on exit
@@ -85,7 +84,7 @@ class TransactionRecord extends ChangeNotifier {
   //rewrites every single log, should just appened
   void writeRecord() {
     log("writing record to log file");
-    var json = jsonEncode(record);
+    var json = jsonEncode(expenses);
     _logFile.then((value) {
       value.writeAsStringSync(json, mode: FileMode.write);
       log("wrote record to log file");
@@ -97,47 +96,61 @@ class Expense {
   //metadata
   int iD;
   DateTime? date;
-  //int numPeople; //if keep track of people dont need numPeople
+  int numPeople;
 
-  List<Owner?> people;
+  List<Owner> people;
   List<Item> items;
   double tax;
   double tip;
   String splittingMethod;
 
-  Expense(
-      {required this.iD,
-      required this.date,
-      required this.splittingMethod,
-      required this.tax,
-      required this.tip,
-      List<Item>? items,
-      List<Owner>? people,
-      int? numPeople})
-      : items = items ?? List.empty(growable: true),
-        people = people ?? List.empty(growable: true) {
-    if (numPeople != null) {
-      this.people = List.filled(numPeople, null);
-    }
+  Expense({
+    required this.iD,
+    this.date,
+    required this.splittingMethod,
+    required this.tax,
+    required this.tip,
+    required this.numPeople,
+    List<Item>? items,
+    List<Owner>? people,
+  })  : items = items ?? List.empty(growable: true),
+        people = people ?? List.empty(growable: true);
+
+  factory Expense.fromJson(dynamic json) {
+    var itemsObjsJson = json['items'] as List;
+    List _items =
+        itemsObjsJson.map((tagJson) => Item.fromJson(tagJson)).toList();
+
+    var peopleObjsJson = json['people'] as List;
+    List _people =
+        peopleObjsJson.map((tagJson) => Owner.fromJson(tagJson)).toList();
+
+    return Expense(
+      iD: json['iD'] as int,
+      splittingMethod: json["splittingMethod"] as String,
+      items: _items as List<Item>,
+      people: _people as List<Owner>,
+      tax: json["tax"] as double,
+      tip: json["tip"] as double,
+      numPeople: json['numPeople'] as int,
+    );
   }
 
-  Expense.toJson(Map<String, dynamic> json)
-      : iD = json['iD'] as int,
-        //date = json['date'] as DateTime,
-        people = json['people'] as List<Owner>,
-        items = json['items'] as List<Item>,
-        tax = json['tax'] as double,
-        tip = json['tip'] as double,
-        splittingMethod = json["splittingMethod"] as String;
+  Map<String, dynamic> toJson() {
+    List<Map> people = this.people.map((i) => i.toJson()).toList();
+    List<Map> items = this.items.map((i) => i.toJson()).toList();
 
-  Map<String, dynamic> toJson() => {
-        'iD': iD,
-        /*'date': date,*/ 'people': people,
-        'items': items,
-        'tax': tax,
-        'tip': tip,
-        'splittingMethod': splittingMethod
-      };
+    return {
+      'iD': iD,
+      'numPeople': numPeople,
+      /*'date': date,*/
+      'people': people,
+      'items': items,
+      'tax': tax,
+      'tip': tip,
+      'splittingMethod': splittingMethod
+    };
+  }
 
   ///Widget that provides a UI for the user to edit the data scanned from the recipt
   /// be able to add items, edit items, delete items
@@ -170,7 +183,12 @@ class Item {
         name = json['name'] as String,
         cost = json['cost'] as double;
 
-  Map<String, dynamic> toJson() => {'owner': owner, 'name': name, 'cost': cost};
+  Map<String, dynamic> toJson() {
+    Map<String, dynamic>? owner =
+        this.owner != null ? this.owner!.toJson() : null;
+
+    return {'owner': owner, 'name': name, 'cost': cost};
+  }
 
   void setOwner(Owner owner) {
     this.owner = owner;
@@ -187,13 +205,22 @@ class Owner {
   Owner({required this.name, List<Item>? items, this.additionalCost = 0})
       : items = items ?? List.empty(growable: true);
 
-  Owner.fromJson(Map<String, dynamic> json)
-      : items = json['items'] as List<Item>,
-        name = json['name'] as String,
-        additionalCost = json['additionalCost'] as double;
+  factory Owner.fromJson(Map<String, dynamic> json) {
+    var itemsObjsJson = json['tags'] as List;
+    List _items =
+        itemsObjsJson.map((tagJson) => Item.fromJson(tagJson)).toList();
 
-  Map<String, dynamic> toJson() =>
-      {'items': items, 'name': name, 'additionalCost': additionalCost};
+    return Owner(
+      items: _items as List<Item>,
+      name: json['name'] as String,
+      additionalCost: json['additionalCost'] as double,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    List<Map> items = this.items.map((i) => i.toJson()).toList();
+    return {'items': items, 'name': name, 'additionalCost': additionalCost};
+  }
 
   // ! In order to update total cost the method needs to know how to spilt the cost, wether spilting the tax and tip evenly or per item
   // ! Design choice of passing down that information

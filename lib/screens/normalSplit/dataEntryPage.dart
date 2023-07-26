@@ -34,16 +34,22 @@ class _DataEntryPageState extends State<DataEntryPage> {
     super.initState();
     // Start listening to changes.
     textControllers["numPeople"]!.addListener(() {
-      numPeople = int.parse(textControllers["numPeople"]!.text);
-      log("numPeople set as ${numPeople}");
+      if (textControllers["numPeople"]!.text != "") {
+        numPeople = int.parse(textControllers["numPeople"]!.text);
+        log("numPeople set as ${numPeople}");
+      }
     });
     textControllers["tax"]!.addListener(() {
-      tax = double.parse(textControllers["tax"]!.text);
-      log("tax set as ${tax}");
+      if (textControllers["tax"]!.text != "") {
+        tax = double.parse(textControllers["tax"]!.text);
+        log("tax set as ${tax}");
+      }
     });
     textControllers["tip"]!.addListener(() {
-      tip = double.parse(textControllers["tip"]!.text);
-      log("tip set as ${tip}");
+      if (textControllers["tip"]!.text != "") {
+        tip = double.parse(textControllers["tip"]!.text);
+        log("tip set as ${tip}");
+      }
     });
   }
 
