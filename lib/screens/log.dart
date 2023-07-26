@@ -13,7 +13,7 @@ class Log extends StatelessWidget {
     var logState = context.watch<TransactionRecord>();
     var expenses = logState.expenses;
 
-    log("log of expenses: ${logState.expenses.elementAt(0) }");
+    log("current expenses to show: ${expenses}");
 
     //Currently only shows Id number of each transaciton
     //Future show tax tip, num people, date? maybe drop down menu when you click on them to show more details
@@ -30,16 +30,12 @@ class Log extends StatelessWidget {
       ),
       body: ListView.builder(
           itemCount: expenses.length,
-          prototypeItem: ListTile(
-            title: Text(expenses.first.iD.toString()),
-          ),
           itemBuilder: (context, index) {
             return ListTile(
               title: Text(expenses[index].iD.toString()),
             );
           },
         ),
-          
     );
   }
 }

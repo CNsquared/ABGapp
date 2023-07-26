@@ -87,8 +87,7 @@ class MyApp extends StatelessWidget {
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var logState = context.watch<TransactionRecord>();
-    logState.intializeRecord();
+
     //Needs to be set up to look like figma design
     return Scaffold(
       appBar: AppBar(
@@ -128,8 +127,10 @@ class HomePage extends StatelessWidget {
               child: Text("Diving Per Item", style: TextStyle(color: Theme.of(context).textTheme.bodyMedium?.color),),
             ),
             ElevatedButton(
-              onPressed: () {
-                context.push('/log');
+              onPressed: () async {
+                var logState = Provider.of<TransactionRecord>(context, listen: false);
+                await logState.intializeRecord().then((value) => context.push('/log'));
+                
               },
               child: Text("Past Logs", style: TextStyle(color: Theme.of(context).textTheme.bodyMedium?.color),),
             ),

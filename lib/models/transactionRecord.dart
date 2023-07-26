@@ -33,12 +33,14 @@ class TransactionRecord extends ChangeNotifier {
   // costly operation should proberely be relpleaced with an intialized boolean and then only runs the code if it hasnt before
   //TODO JSON HELL
   Future<void> intializeRecord() async {
-    expenses = List.empty(growable: true);
 
+    
     if (initialized) {
       log("Log file already initialized");
       return;
     }
+    
+    
 
     await _logFile.then((value) {
       try {
