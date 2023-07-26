@@ -84,6 +84,7 @@ class _DataEntryPageState extends State<DataEntryPage> {
           icon: Icon(Icons.attach_money_rounded),
           filter: "money",
         ),
+        
         submitButton(context),
         clearButton(),
       ]),
@@ -127,6 +128,7 @@ class _DataEntryPageState extends State<DataEntryPage> {
         },
         child: Text("Clear"));
   }
+  
 
   ///Submit button for the [DataEntryPage] that is passed a [PageController] and navigates to page 1
   ElevatedButton submitButton(BuildContext context) {

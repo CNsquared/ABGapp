@@ -1,3 +1,4 @@
+import 'package:abg_app/common/theme.dart';
 import 'package:abg_app/models/transactionRecord.dart';
 import 'package:abg_app/screens/log.dart';
 import 'package:abg_app/screens/normalSplit/normalSplit.dart';
@@ -7,6 +8,8 @@ import 'package:camera/camera.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+
 
 void main() {
   runApp(const MyApp());
@@ -57,21 +60,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Builds the home page of the app
-    return ChangeNotifierProvider(
-      create: (BuildContext context) => TransactionRecord(),
+    return MultiProvider(
       //Using [GoRouter] to go between pages in the app
+      providers: [ 
+        ChangeNotifierProvider(create: (BuildContext context) => TransactionRecord(),
+        ),
+        ChangeNotifierProvider<ThemeModel>(
+           create: (_) => ThemeModel(),
+        )
+      ],
+
       child: MaterialApp.router(
         title: 'Log It',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          useMaterial3: true,
-          colorScheme:
-              // * design TEAM
-              //Create actual theme
-              ColorScheme.fromSeed(
-                  seedColor: Color.fromARGB(255, 104, 105, 105)),
-        ),
+        theme:  Themes.darkTheme,
         routerConfig: router(),
+        
       ),
     );
   }
@@ -111,7 +115,7 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 context.push('/normalSplit');
               },
-              child: Text("Split Tax Tip Evenly"),
+              child: Text("Split Tax Tip Evenly", style: TextStyle(color: Theme.of(context).textTheme.bodyMedium?.color),),
             ),
             ElevatedButton(
               onPressed: () async {
@@ -119,19 +123,19 @@ class HomePage extends StatelessWidget {
                 await availableCameras()
                     .then((value) => context.push('/camera', extra: value[0]));
               },
-              child: Text("Diving Per Item"),
+              child: Text("Diving Per Item", style: TextStyle(color: Theme.of(context).textTheme.bodyMedium?.color),),
             ),
             ElevatedButton(
               onPressed: () {
                 context.push('/log');
               },
-              child: Text("Past Logs"),
+              child: Text("Past Logs", style: TextStyle(color: Theme.of(context).textTheme.bodyMedium?.color),),
             ),
             ElevatedButton(
               onPressed: () {
                 context.push('/viewImage');
               },
-              child: Text("View Image"),
+              child: Text("View Image", style: TextStyle(color: Theme.of(context).textTheme.bodyMedium?.color),),
             ),
           ]),
     );
