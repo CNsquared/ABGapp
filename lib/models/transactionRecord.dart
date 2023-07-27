@@ -13,13 +13,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 class TransactionRecord extends ChangeNotifier {
   bool initialized;
   late List expenses;
-  late SharedPreferences prefs; 
+  late SharedPreferences prefs;
   late int iD;
 
-  TransactionRecord()
-      : initialized = false{
-        intializeRecord();
-      }
+  TransactionRecord() : initialized = false {
+    intializeRecord();
+  }
 
   Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();
@@ -35,7 +34,6 @@ class TransactionRecord extends ChangeNotifier {
   // costly operation should proberely be relpleaced with an intialized boolean and then only runs the code if it hasnt before
   //TODO JSON HELL
   Future<void> intializeRecord() async {
-
     if (initialized) {
       log("Log file already initialized");
       return;
@@ -124,18 +122,18 @@ class Expense {
 
   factory Expense.fromJson(dynamic json) {
     var itemsObjsJson = json['items'] as List;
-    List _items =
+    List items =
         itemsObjsJson.map((tagJson) => Item.fromJson(tagJson)).toList();
 
     var peopleObjsJson = json['people'] as List;
-    List _people =
+    List people =
         peopleObjsJson.map((tagJson) => Owner.fromJson(tagJson)).toList();
 
     return Expense(
       iD: json['iD'] as int,
       splittingMethod: json["splittingMethod"] as String,
-      items: _items as List<Item>,
-      people: _people as List<Owner>,
+      items: items as List<Item>,
+      people: people as List<Owner>,
       tax: json["tax"] as double,
       tip: json["tip"] as double,
       numPeople: json['numPeople'] as int,

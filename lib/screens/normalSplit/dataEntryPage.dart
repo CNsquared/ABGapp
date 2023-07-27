@@ -35,19 +35,19 @@ class _DataEntryPageState extends State<DataEntryPage> {
     textControllers["numPeople"]!.addListener(() {
       if (textControllers["numPeople"]!.text != "") {
         numPeople = int.parse(textControllers["numPeople"]!.text);
-        log("numPeople set as ${numPeople}");
+        log("numPeople set as $numPeople");
       }
     });
     textControllers["tax"]!.addListener(() {
       if (textControllers["tax"]!.text != "") {
         tax = double.parse(textControllers["tax"]!.text);
-        log("tax set as ${tax}");
+        log("tax set as $tax");
       }
     });
     textControllers["tip"]!.addListener(() {
       if (textControllers["tip"]!.text != "") {
         tip = double.parse(textControllers["tip"]!.text);
-        log("tip set as ${tip}");
+        log("tip set as $tip");
       }
     });
   }
@@ -89,14 +89,13 @@ class _DataEntryPageState extends State<DataEntryPage> {
           icon: Icon(Icons.attach_money_rounded),
           filter: "money",
         ),
-        
         submitButton(context),
         clearButton(),
       ]),
     );
 
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         FocusScope.of(context).unfocus();
       },
       child: Container(
@@ -139,7 +138,6 @@ class _DataEntryPageState extends State<DataEntryPage> {
         },
         child: Text("Clear"));
   }
-  
 
   ///Submit button for the [DataEntryPage] that is passed a [PageController] and navigates to page 1
   ElevatedButton submitButton(BuildContext context) {

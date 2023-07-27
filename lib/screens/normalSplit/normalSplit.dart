@@ -1,7 +1,6 @@
 import 'package:abg_app/screens/normalSplit/dataEntryPage.dart';
 import 'package:abg_app/screens/normalSplit/finalDisplayPage.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 ///Home page of the normal spilting process
 ///
@@ -18,14 +17,14 @@ class NormalSplit extends StatelessWidget {
       //*DESGIN TEAM
       color: Colors.grey,
       child: PageView(
-        physics: NeverScrollableScrollPhysics(),
-        controller: controller, 
-        children: <Widget>[
-        DataEntryPage(pageController: controller),
-        FinalDisplayPage(
-          pageController: controller,
-        ),
-      ]),
+          physics: NeverScrollableScrollPhysics(),
+          controller: controller,
+          children: <Widget>[
+            DataEntryPage(pageController: controller),
+            FinalDisplayPage(
+              pageController: controller,
+            ),
+          ]),
     );
   }
 }

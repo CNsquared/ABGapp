@@ -60,11 +60,12 @@ class MyApp extends StatelessWidget {
     // Builds the home page of the app
     return MultiProvider(
       //Using [GoRouter] to go between pages in the app
-      providers: [ 
-        ChangeNotifierProvider(create: (BuildContext context) => TransactionRecord(),
+      providers: [
+        ChangeNotifierProvider(
+          create: (BuildContext context) => TransactionRecord(),
         ),
         ChangeNotifierProvider<ThemeModel>(
-           create: (_) => ThemeModel(),
+          create: (_) => ThemeModel(),
         )
       ],
 
@@ -72,7 +73,7 @@ class MyApp extends StatelessWidget {
         builder: (context, theme, _) => MaterialApp.router(
           title: 'Log It',
           debugShowCheckedModeBanner: false,
-          theme:  theme.theme,
+          theme: theme.theme,
           routerConfig: router(),
         ),
       ),
@@ -86,10 +87,8 @@ class MyApp extends StatelessWidget {
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     //Needs to be set up to look like figma design
     return Scaffold(
-      
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.sunny),
@@ -119,7 +118,11 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 context.push('/normalSplit');
               },
-              child: Text("Split Tax Tip Evenly", style: TextStyle(color: Theme.of(context).textTheme.bodyMedium?.color),),
+              child: Text(
+                "Split Tax Tip Evenly",
+                style: TextStyle(
+                    color: Theme.of(context).textTheme.bodyMedium?.color),
+              ),
             ),
             ElevatedButton(
               onPressed: () async {
@@ -127,21 +130,35 @@ class HomePage extends StatelessWidget {
                 await availableCameras()
                     .then((value) => context.push('/camera', extra: value[0]));
               },
-              child: Text("Diving Per Item", style: TextStyle(color: Theme.of(context).textTheme.bodyMedium?.color),),
+              child: Text(
+                "Diving Per Item",
+                style: TextStyle(
+                    color: Theme.of(context).textTheme.bodyMedium?.color),
+              ),
             ),
             ElevatedButton(
               onPressed: () async {
-                var logState = Provider.of<TransactionRecord>(context, listen: false);
-                await logState.intializeRecord().then((value) => context.push('/log'));
-                
+                var logState =
+                    Provider.of<TransactionRecord>(context, listen: false);
+                await logState
+                    .intializeRecord()
+                    .then((value) => context.push('/log'));
               },
-              child: Text("Past Logs", style: TextStyle(color: Theme.of(context).textTheme.bodyMedium?.color),),
+              child: Text(
+                "Past Logs",
+                style: TextStyle(
+                    color: Theme.of(context).textTheme.bodyMedium?.color),
+              ),
             ),
             ElevatedButton(
               onPressed: () {
                 context.push('/viewImage');
               },
-              child: Text("View Image", style: TextStyle(color: Theme.of(context).textTheme.bodyMedium?.color),),
+              child: Text(
+                "View Image",
+                style: TextStyle(
+                    color: Theme.of(context).textTheme.bodyMedium?.color),
+              ),
             ),
           ]),
     );
