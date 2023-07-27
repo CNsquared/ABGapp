@@ -9,8 +9,6 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-//huh
-
 void main() {
   runApp(const MyApp());
 }
@@ -91,6 +89,7 @@ class HomePage extends StatelessWidget {
 
     //Needs to be set up to look like figma design
     return Scaffold(
+      
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.sunny),
@@ -101,7 +100,7 @@ class HomePage extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.settings),
+            icon: Image.asset('images/chaewon.jpeg'),
             onPressed: () {},
           )
         ],
