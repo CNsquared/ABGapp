@@ -17,7 +17,10 @@ class NormalSplit extends StatelessWidget {
       padding: EdgeInsets.all(8.0),
       //*DESGIN TEAM
       color: Colors.grey,
-      child: PageView(controller: controller, children: <Widget>[
+      child: PageView(
+        physics: NeverScrollableScrollPhysics(),
+        controller: controller, 
+        children: <Widget>[
         DataEntryPage(pageController: controller),
         FinalDisplayPage(
           pageController: controller,

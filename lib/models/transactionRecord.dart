@@ -6,18 +6,20 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 //persistence done but multiple efficeny checks need to be done
 ///Keeps track of all transations
 class TransactionRecord extends ChangeNotifier {
   bool initialized;
-  //late List<_Transaction> record; // !Remove allow null after testing
   late List expenses;
+  late SharedPreferences prefs; 
+  late int iD;
 
-  int iD;
   TransactionRecord()
-      : initialized = false,
-        iD = 0;
+      : initialized = false{
+        intializeRecord();
+      }
 
   Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();
@@ -34,13 +36,13 @@ class TransactionRecord extends ChangeNotifier {
   //TODO JSON HELL
   Future<void> intializeRecord() async {
 
-    
     if (initialized) {
       log("Log file already initialized");
       return;
     }
-    
-    
+
+    prefs = await SharedPreferences.getInstance();
+    iD = prefs.getInt('iD') ?? 0;
 
     await _logFile.then((value) {
       try {
@@ -79,6 +81,8 @@ class TransactionRecord extends ChangeNotifier {
     //record.add(transaction);
 
     iD++;
+    prefs.setInt('iD', iD);
+
     //writes to file every time maybe only do it on exit
     writeRecord();
   }
@@ -209,11 +213,11 @@ class Owner {
 
   factory Owner.fromJson(Map<String, dynamic> json) {
     var itemsObjsJson = json['tags'] as List;
-    List _items =
+    List items =
         itemsObjsJson.map((tagJson) => Item.fromJson(tagJson)).toList();
 
     return Owner(
-      items: _items as List<Item>,
+      items: items as List<Item>,
       name: json['name'] as String,
       additionalCost: json['additionalCost'] as double,
     );
@@ -232,30 +236,4 @@ class Owner {
     items.add(item);
     _updateTotalCost();
   }
-}
-
-// ! DO NOT USE DEPRECATING CLASS
-///Data structure that hold information abotu each transaction
-class _Transaction {
-  int iD;
-  DateTime? date;
-  double tax;
-  double tip;
-  int numPeople;
-
-  _Transaction(this.iD, this.tax, this.tip, this.numPeople, this.date);
-
-  _Transaction.fromJson(Map<String, dynamic> json)
-      : iD = json['iD'] as int,
-        //date = json['date'] as DateTime,
-        tax = json['tax'] as double,
-        tip = json['tip'] as double,
-        numPeople = json['numPeople'] as int;
-
-  Map<String, dynamic> toJson() => {
-        'iD': iD,
-        /*'date': date,*/ 'tax': tax,
-        'tip': tip,
-        'numPeople': numPeople
-      };
 }

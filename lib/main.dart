@@ -9,8 +9,6 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-
-
 void main() {
   runApp(const MyApp());
 }
@@ -70,12 +68,13 @@ class MyApp extends StatelessWidget {
         )
       ],
 
-      child: MaterialApp.router(
-        title: 'Log It',
-        debugShowCheckedModeBanner: false,
-        theme:  Themes.darkTheme,
-        routerConfig: router(),
-        
+      child: Consumer<ThemeModel>(
+        builder: (context, theme, _) => MaterialApp.router(
+          title: 'Log It',
+          debugShowCheckedModeBanner: false,
+          theme:  theme.theme,
+          routerConfig: router(),
+        ),
       ),
     );
   }
@@ -93,7 +92,10 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.sunny),
-          onPressed: () {},
+          onPressed: () {
+            var themeData = Provider.of<ThemeModel>(context, listen: false);
+            themeData.toggleTheme();
+          },
         ),
         actions: [
           IconButton(

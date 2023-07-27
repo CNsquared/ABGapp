@@ -7,7 +7,6 @@ import 'package:provider/provider.dart';
 
 ///Takes in user input of what the tax, tip and number of people is
 ///
-// ! Planning on deprecated the use of OnChanged for the buttons as well as [_Transaction]
 //TODO make the keyboard go down when click out of text filling items
 
 class DataEntryPage extends StatefulWidget {
@@ -96,27 +95,32 @@ class _DataEntryPageState extends State<DataEntryPage> {
       ]),
     );
 
-    return Container(
-      //*DESIGN TEAM
-      padding: EdgeInsets.fromLTRB(0, 10, 0, 20),
-      child: Column(
-        children: [
-          //*Design TEAM
-          Container(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                "Add Values",
-                style: TextStyle(
-                    fontSize: 32,
-                    color: Colors.black,
-                    decoration: TextDecoration.none),
-              )),
-          //*DESIGN TEAM
-          SizedBox(height: 30),
-          Expanded(
-            child: card,
-          ),
-        ],
+    return GestureDetector(
+      onTap: (){
+        FocusScope.of(context).unfocus();
+      },
+      child: Container(
+        //*DESIGN TEAM
+        padding: EdgeInsets.fromLTRB(0, 10, 0, 20),
+        child: Column(
+          children: [
+            //*Design TEAM
+            Container(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  "Add Values",
+                  style: TextStyle(
+                      fontSize: 32,
+                      color: Colors.black,
+                      decoration: TextDecoration.none),
+                )),
+            //*DESIGN TEAM
+            SizedBox(height: 30),
+            Expanded(
+              child: card,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -125,6 +129,7 @@ class _DataEntryPageState extends State<DataEntryPage> {
     return ElevatedButton(
         onPressed: () {
           log("Clear data entry");
+          FocusScope.of(context).unfocus();
           textControllers.forEach((key, value) {
             value.clear();
           });
@@ -141,7 +146,7 @@ class _DataEntryPageState extends State<DataEntryPage> {
     return ElevatedButton(
         onPressed: () async {
           var logState = Provider.of<TransactionRecord>(context, listen: false);
-
+          FocusScope.of(context).unfocus();
           await logState.intializeRecord();
 
           if (dataFilled()) {
