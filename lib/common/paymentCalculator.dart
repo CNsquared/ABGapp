@@ -1,7 +1,17 @@
 class PaymentCalculator {
   var taxRate;
 
-  //TODO overload methods to take in different splitting payment methods
+  static double splitValue({required double value, required int numOfPeople}) {
+    var splitValue = value / numOfPeople;
+
+    splitValue *= 100;
+    splitValue = (splitValue.ceil()).toDouble();
+    splitValue /= 100;
+
+    return double.parse(splitValue.toStringAsFixed(2));
+  }
+
+  //! deprecating them for reusable split value method
   double splitTax(double totalTax, int numOfPeople) {
     var splitTax = totalTax / numOfPeople;
     return _formatTipReturn(splitTax);

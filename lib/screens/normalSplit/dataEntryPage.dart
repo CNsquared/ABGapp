@@ -2,8 +2,9 @@ import 'dart:developer';
 
 import 'package:abg_app/models/transactionRecord.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+
+import '../../common/dataEntryCustomWidgets.dart';
 
 ///Takes in user input of what the tax, tip and number of people is
 ///
@@ -148,86 +149,11 @@ class _DataEntryPageState extends State<DataEntryPage> {
           await logState.intializeRecord();
 
           if (dataFilled()) {
-            logState.addTransaction(tax, tip, numPeople);
+            logState.addTransaction(tax: tax, tip: tip, numPeople: numPeople, splittingMethod: "equalTaxTip");
             widget.pageController.animateToPage(1,
-                duration: Duration(milliseconds: 250), curve: Curves.easeIn);
+                duration: Duration(milliseconds: 1000), curve: Curves.easeIn);
           }
         },
         child: Text("Submit"));
-  }
-}
-
-///Clear Button that removes the data from [NormalSplitState] state
-class ClearButton extends StatelessWidget {
-  final List<TextEditingController> textControllers;
-  const ClearButton({
-    super.key,
-    required this.textControllers,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-        onPressed: () {
-          //*DESIGN
-          for (var controller in textControllers) {
-            controller.clear();
-          }
-        },
-        child: Text("Clear"));
-  }
-}
-
-///Entry form that take in tip and stores in [NormalSplitState] state
-class EntryForm extends StatelessWidget {
-  final TextEditingController controller;
-  final String prompt;
-  final Icon icon;
-  late final FilteringTextInputFormatter inputFormatter;
-
-  EntryForm({
-    super.key,
-    required this.controller,
-    required this.prompt,
-    Icon? icon,
-    String? filter,
-  }) : icon = icon ?? Icon(Icons.face_2_sharp) {
-    switch (filter) {
-      case "money":
-        inputFormatter =
-            FilteringTextInputFormatter.allow(RegExp(r'(\d+)?\.?\d{0,2}'));
-        break;
-      case "integer":
-        inputFormatter = FilteringTextInputFormatter.allow(RegExp(r"[0-9]"));
-      default:
-        null;
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 16),
-      child: TextFormField(
-        controller: controller,
-        style: const TextStyle(fontSize: 20, color: Colors.black),
-        decoration: InputDecoration(
-          enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.black),
-          ),
-          focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.black)),
-          labelText: prompt,
-          prefixIcon: Padding(
-            padding: const EdgeInsetsDirectional.only(start: 5),
-            child: icon,
-          ),
-        ),
-        keyboardType: const TextInputType.numberWithOptions(decimal: true),
-        inputFormatters: [
-          inputFormatter,
-        ],
-      ),
-    );
   }
 }

@@ -1,3 +1,8 @@
+
+
+import 'dart:developer';
+
+import 'package:abg_app/common/expenses.dart';
 import 'package:abg_app/common/paymentCalculator.dart';
 import 'package:abg_app/models/transactionRecord.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +18,7 @@ class FinalDisplayPage extends StatelessWidget {
   @override
   // TODO needs full redesign
   Widget build(BuildContext context) {
+    log("Final Display Page");
     return Column(children: <Widget>[
       SizedBox(height: 50),
       Container(
@@ -82,15 +88,14 @@ class DisplayAmountDue extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var logState = Provider.of<TransactionRecord>(context, listen: false);
-    var latestTransaction = logState.expenses[logState.expenses.length - 1];
+    Expense latestTransaction = logState.expenses.last;
 
-    var paymentCalculator = PaymentCalculator();
-    var amountDue = paymentCalculator.splitTax(
-            latestTransaction.tax, latestTransaction.numPeople) +
-        paymentCalculator.splitTip(
-            latestTransaction.tip, latestTransaction.numPeople);
-    return Text(
-      "Amount Due: ${amountDue.toStringAsFixed(2)}",
-    );
+    return ListView.builder(
+        itemCount: latestTransaction.people.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text("Amount Due: ${latestTransaction.people[index].cost}"),
+          );
+        },);
   }
 }
