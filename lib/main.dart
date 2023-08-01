@@ -102,7 +102,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(
-            Icons.sunny,
+            Icons.wb_sunny_outlined,
             color: themeData.iconColor,
             ),
           onPressed: () {
@@ -113,7 +113,9 @@ class HomePage extends StatelessWidget {
         actions: [
           IconButton(
             icon: Image.asset('images/chaewon.jpeg'),
-            onPressed: () {},
+            onPressed: () {
+              context.push('/viewImage');
+            },
           )
         ],
       ),
@@ -128,11 +130,17 @@ class HomePage extends StatelessWidget {
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                side: BorderSide(width: 5, color: Colors.grey),
+                elevation: 5,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                fixedSize: Size(250, 75) 
+              ),
               onPressed: () {
                 context.push('/normalSplit');
               },
               child: Text(
-                "Split Tax Tip Evenly",
+                "Dividing Equally",
                 style: TextStyle(
                     color: Theme.of(context).textTheme.bodyMedium?.color),
               ),
@@ -143,6 +151,12 @@ class HomePage extends StatelessWidget {
                 await availableCameras()
                     .then((value) => context.push('/camera', extra: value[0]));
               },
+              style: ElevatedButton.styleFrom(
+                side: BorderSide(width: 5, color: Colors.grey),
+                elevation: 5,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                fixedSize: Size(250, 75) 
+              ),
               child: Text(
                 "Diving Per Item",
                 style: TextStyle(
@@ -157,18 +171,14 @@ class HomePage extends StatelessWidget {
                     .intializeRecord()
                     .then((value) => context.push('/log'));
               },
+              style: ElevatedButton.styleFrom(
+                side: BorderSide(width: 5, color: Colors.grey),
+                elevation: 5,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                fixedSize: Size(250, 75) 
+              ),
               child: Text(
                 "Past Logs",
-                style: TextStyle(
-                    color: Theme.of(context).textTheme.bodyMedium?.color),
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                context.push('/viewImage');
-              },
-              child: Text(
-                "View Image",
                 style: TextStyle(
                     color: Theme.of(context).textTheme.bodyMedium?.color),
               ),
