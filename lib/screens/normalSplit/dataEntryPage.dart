@@ -71,7 +71,8 @@ class _DataEntryPageState extends State<DataEntryPage> {
   @override
   Widget build(BuildContext context) {
     var card = Card(
-      child: Column(children: <Widget>[
+      child: Column(
+        children: <Widget>[
         EntryForm(
           controller: textControllers["numPeople"]!,
           prompt: "Number of People",
@@ -115,7 +116,7 @@ class _DataEntryPageState extends State<DataEntryPage> {
                       decoration: TextDecoration.none),
                 )),
             //*DESIGN TEAM
-            SizedBox(height: 30),
+            SizedBox(height: 20),
             Expanded(
               child: card,
             ),
@@ -137,7 +138,7 @@ class _DataEntryPageState extends State<DataEntryPage> {
           tax = null;
           numPeople = null;
         },
-        child: Text("Clear"));
+        child: Text("Clear", style: TextStyle(color: Theme.of(context).textTheme.bodyMedium?.color)));
   }
 
   ///Submit button for the [DataEntryPage] that is passed a [PageController] and navigates to page 1
@@ -154,6 +155,6 @@ class _DataEntryPageState extends State<DataEntryPage> {
                 duration: Duration(milliseconds: 1000), curve: Curves.easeIn);
           }
         },
-        child: Text("Submit"));
+        child: Text("Submit", style: TextStyle(color: Theme.of(context).textTheme.bodyMedium?.color)));
   }
 }

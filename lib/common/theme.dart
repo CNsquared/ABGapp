@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class ThemeModel extends ChangeNotifier {
   bool _isDarkMode = false;
   ThemeData theme = Themes.darkTheme;
+  Color iconColor = Color(0xFF363949);
+
 
   bool get isDarkMode => _isDarkMode;
 
@@ -11,8 +13,10 @@ class ThemeModel extends ChangeNotifier {
 
     if (_isDarkMode) {
       theme = Themes.darkTheme;
+      iconColor = Color(0xFFFFF8E7);
     } else {
       theme = Themes.lightTheme;
+      iconColor = Color(0xFF363949);
     }
     notifyListeners();
   }
@@ -28,6 +32,10 @@ class Themes {
         error: Colors.red,
       ),
       fontFamily: 'Georgia',
+
+      iconTheme: IconThemeData(
+        color: Color(0xFF363949),
+      ),
 
       // Define the default `TextTheme`. Use this to specify the default
       // text styling for headlines, titles, bodies of text, and more.
@@ -48,6 +56,10 @@ class Themes {
         error: Colors.red,
       ),
       fontFamily: 'Georgia',
+
+      iconTheme: IconThemeData(
+        color: Color(0xFFFFF8E7),
+      ),
 
       // Define the default `TextTheme`. Use this to specify the default
       // text styling for headlines, titles, bodies of text, and more.

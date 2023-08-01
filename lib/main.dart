@@ -96,13 +96,17 @@ class MyApp extends StatelessWidget {
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var themeData = Provider.of<ThemeModel>(context, listen: false);
     //Needs to be set up to look like figma design
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.sunny),
+          icon: Icon(
+            Icons.sunny,
+            color: themeData.iconColor,
+            ),
           onPressed: () {
-            var themeData = Provider.of<ThemeModel>(context, listen: false);
+            
             themeData.toggleTheme();
           },
         ),
