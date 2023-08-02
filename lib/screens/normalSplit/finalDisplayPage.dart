@@ -72,8 +72,9 @@ class FinalDisplayPage extends StatelessWidget {
 class DisplayInputData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var logState = Provider.of<TransactionRecord>(context, listen: false);
-    var latestTransaction = logState.expenses[logState.expenses.length - 1];
+    var logState = Provider.of<TransactionRecord>(context, listen: true);
+    log("logState: ${logState.expenses.toString()}");
+    var latestTransaction = logState.expenses.last;
 
     return Column(children: <Widget>[
       Text("People: ${latestTransaction.numPeople}"),
@@ -87,7 +88,7 @@ class DisplayInputData extends StatelessWidget {
 class DisplayAmountDue extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var logState = Provider.of<TransactionRecord>(context, listen: false);
+    var logState = Provider.of<TransactionRecord>(context, listen: true);
     Expense latestTransaction = logState.expenses.last;
 
     return ListView.builder(

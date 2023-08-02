@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       //Using [GoRouter] to go between pages in the app
       providers: [
-        ChangeNotifierProvider(
+        ChangeNotifierProvider<TransactionRecord>(
           create: (BuildContext context) => TransactionRecord(),
         ),
         ChangeNotifierProvider<ThemeModel>(

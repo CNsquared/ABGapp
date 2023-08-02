@@ -1,12 +1,13 @@
 import 'dart:developer';
 
+import 'package:abg_app/common/date.dart';
 import 'package:abg_app/common/paymentCalculator.dart';
 import 'package:flutter/material.dart';
 
 class Expense {
   //metadata
   int iD;
-  DateTime? date;
+  Date date;
   int numPeople;
 
   List<Owner> people;
@@ -17,7 +18,7 @@ class Expense {
 
   Expense({
     required this.iD,
-    this.date,
+    required this.date,
     required this.splittingMethod,
     required this.tax,
     required this.tip,
@@ -69,6 +70,10 @@ class Expense {
   }
 
   factory Expense.fromJson(dynamic json) {
+
+    log("making expense from json: ${json.toString()}");
+
+
     var itemsObjsJson = json['items'] as List;
     List items =
         itemsObjsJson.map((tagJson) => Item.fromJson(tagJson)).toList();
@@ -85,23 +90,32 @@ class Expense {
       tax: json["tax"] as double,
       tip: json["tip"] as double,
       numPeople: json['numPeople'] as int,
+      date: Date.fromJson(json['date']),
     );
   }
 
   Map<String, dynamic> toJson() {
     List<Map> people = this.people.map((i) => i.toJson()).toList();
     List<Map> items = this.items.map((i) => i.toJson()).toList();
+    Map<String, dynamic> date = this.date.toJson();
+
+    log("Converting expense to json ${date}}");
 
     return {
       'iD': iD,
       'numPeople': numPeople,
-      /*'date': date,*/
+      'date': date,
       'people': people,
       'items': items,
       'tax': tax,
       'tip': tip,
       'splittingMethod': splittingMethod
     };
+  }
+
+  @override
+  String toString() {
+    return "Expense: {iD: $iD, date: $date, numPeople: $numPeople, people: $people, items: $items, tax: $tax, tip: $tip, splittingMethod: $splittingMethod}";
   }
 
   ///Widget that provides a UI for the user to edit the data scanned from the recipt

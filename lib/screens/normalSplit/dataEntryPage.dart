@@ -150,7 +150,7 @@ class _DataEntryPageState extends State<DataEntryPage> {
           await logState.intializeRecord();
 
           if (dataFilled()) {
-            logState.addTransaction(tax: tax, tip: tip, numPeople: numPeople, splittingMethod: "equalTaxTip");
+            await logState.addTransaction(tax: tax, tip: tip, numPeople: numPeople, splittingMethod: "equalTaxTip");
             widget.pageController.animateToPage(1,
                 duration: Duration(milliseconds: 1000), curve: Curves.easeIn);
           }
