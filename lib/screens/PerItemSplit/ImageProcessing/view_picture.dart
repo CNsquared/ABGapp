@@ -6,11 +6,14 @@ import 'package:go_router/go_router.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
+import '../../../main.dart';
+
 ///Displays the logged transations in [TransactionRecord]
 ///
 // TODO #4 Bug dont know how to make so that if the image doesnt exisit it catches expection and shows another image.
 class ViewPicture extends StatelessWidget {
   late final String imagePath;
+  static const String routeName = "/viewImage";
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +42,7 @@ class ViewPicture extends StatelessWidget {
         ),
         ElevatedButton(
           onPressed: () {
-            context.go("/home");
+            context.go(HomePage.routeName);
           },
           child: Icon(Icons.home),
         ),

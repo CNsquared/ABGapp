@@ -1,6 +1,7 @@
 /// A screen that allows users to take a picture using a given camera.
 import 'dart:developer';
 
+import 'package:abg_app/main.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -14,6 +15,7 @@ class TakePicturePage extends StatefulWidget {
   });
 
   final CameraDescription camera;
+  static const String routeName = "/camera";
 
   @override
   TakePicturePageState createState() => TakePicturePageState();
@@ -92,7 +94,7 @@ class TakePicturePageState extends State<TakePicturePage> {
           children: [
             ElevatedButton(
               onPressed: () {
-                context.go("/home");
+                context.go(HomePage.routeName);
               },
               child: Icon(Icons.home),
             ),

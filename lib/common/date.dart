@@ -1,5 +1,3 @@
-
-
 class Date {
 
   int month = 1;

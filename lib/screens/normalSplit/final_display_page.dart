@@ -4,6 +4,7 @@ import 'dart:developer';
 
 import 'package:abg_app/common/expenses.dart';
 import 'package:abg_app/common/payment_calculator.dart';
+import 'package:abg_app/main.dart';
 import 'package:abg_app/models/transaction_record.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -12,6 +13,7 @@ import 'package:provider/provider.dart';
 ///Displays the calculated amount due
 class FinalDisplayPage extends StatelessWidget {
   final PageController pageController;
+  static const String routeName = "/finalDisplay";
 
   FinalDisplayPage({required this.pageController});
 
@@ -52,7 +54,7 @@ class FinalDisplayPage extends StatelessWidget {
       Row(children: <Widget>[
         ElevatedButton(
           onPressed: () {
-            context.go("/home");
+            context.go(HomePage.routeName);
           },
           child: Icon(Icons.home),
         ),

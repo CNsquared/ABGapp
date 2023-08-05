@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:abg_app/common/theme.dart';
 import 'package:abg_app/models/transaction_record.dart';
-import 'package:abg_app/screens/log.dart';
+import 'package:abg_app/screens/log_page.dart';
 import 'package:abg_app/screens/normalSplit/normal_split.dart';
 import 'package:abg_app/screens/PerItemSplit/ImageProcessing/take_picture_page.dart';
 import 'package:abg_app/screens/PerItemSplit/ImageProcessing/view_picture.dart';
@@ -22,26 +22,26 @@ void main() {
 
 GoRouter router() {
   return GoRouter(
-    initialLocation: '/home',
+    initialLocation: HomePage.routeName,
     routes: [
       GoRoute(
-        path: '/home',
+        path: HomePage.routeName,
         builder: (context, state) => HomePage(),
       ),
       GoRoute(
-        path: '/normalSplit',
+        path: NormalSplit.routeName,
         builder: (context, state) => NormalSplit(),
       ),
       GoRoute(
-        path: '/log',
+        path: Log.routeName,
         builder: (context, state) => Log(),
       ),
       GoRoute(
-        path: '/viewImage',
+        path: ViewPicture.routeName,
         builder: (context, state) => ViewPicture(),
       ),
       GoRoute(
-        path: '/camera',
+        path: TakePicturePage.routeName,
         builder: (context, state) {
           CameraDescription camera = state.extra as CameraDescription;
           return TakePicturePage(
@@ -56,6 +56,7 @@ GoRouter router() {
 ///Starting point of the app that creates the state [TransactionRecord]
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+  static const String appName = "Log It";
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +74,7 @@ class MyApp extends StatelessWidget {
 
       child: Consumer<ThemeModel>(
         builder: (context, theme, _) => MaterialApp.router(
-          title: 'Log It',
+          title: appName,
 
           // Providing a restorationScopeId allows the Navigator built by the
           // MaterialApp to restore the navigation stack when a user leaves and
@@ -96,6 +97,9 @@ class MyApp extends StatelessWidget {
 // TODO add animations to go router
 
 class HomePage extends StatelessWidget {
+
+  static const String routeName = "/";
+
   @override
   Widget build(BuildContext context) {
     var themeData = Provider.of<ThemeModel>(context, listen: false);
@@ -140,7 +144,7 @@ class HomePage extends StatelessWidget {
               ),
               onPressed: () {
                 log("Pushing Normal Split");
-                context.push('/normalSplit');
+                context.push(NormalSplit.routeName);
               },
               child: Text(
                 "Dividing Equally",
@@ -152,7 +156,7 @@ class HomePage extends StatelessWidget {
               onPressed: () async {
                 //getting cameras from the device and using the first one
                 await availableCameras()
-                    .then((value) => context.push('/camera', extra: value[0]));
+                    .then((value) => context.push(TakePicturePage.routeName, extra: value[0]));
               },
               style: ElevatedButton.styleFrom(
                 side: BorderSide(width: 5, color: Colors.grey),
@@ -172,7 +176,7 @@ class HomePage extends StatelessWidget {
                     Provider.of<TransactionRecord>(context, listen: false);
                 await logState
                     .intializeRecord()
-                    .then((value) => context.push('/log'));
+                    .then((value) => context.push(Log.routeName));
               },
               style: ElevatedButton.styleFrom(
                 side: BorderSide(width: 5, color: Colors.grey),

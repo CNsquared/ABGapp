@@ -4,7 +4,7 @@ import 'package:abg_app/models/transaction_record.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../common/dataEntryCustomWidgets.dart';
+import '../../common/data_entry_custom_widgets.dart';
 
 ///Takes in user input of what the tax, tip and number of people is
 ///
@@ -12,6 +12,8 @@ import '../../common/dataEntryCustomWidgets.dart';
 
 class DataEntryPage extends StatefulWidget {
   final PageController pageController;
+
+  static const String routeName = "/dataEntry";
 
   DataEntryPage({required this.pageController});
   @override

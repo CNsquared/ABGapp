@@ -99,7 +99,7 @@ class Expense {
     List<Map> items = this.items.map((i) => i.toJson()).toList();
     Map<String, dynamic> date = this.date.toJson();
 
-    log("Converting expense to json ${date}}");
+    log("Converting expense to json $date}");
 
     return {
       'iD': iD,
