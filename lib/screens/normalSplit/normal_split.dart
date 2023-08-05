@@ -1,5 +1,5 @@
-import 'package:abg_app/screens/normalSplit/dataEntryPage.dart';
-import 'package:abg_app/screens/normalSplit/finalDisplayPage.dart';
+import 'package:abg_app/screens/normalSplit/data_entry_page.dart';
+import 'package:abg_app/screens/normalSplit/final_display_page.dart';
 import 'package:flutter/material.dart';
 
 ///Home page of the normal spilting process

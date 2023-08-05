@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:abg_app/models/transactionRecord.dart';
+import 'package:abg_app/models/transaction_record.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';

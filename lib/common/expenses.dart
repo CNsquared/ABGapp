@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:abg_app/common/date.dart';
-import 'package:abg_app/common/paymentCalculator.dart';
+import 'package:abg_app/common/payment_calculator.dart';
 import 'package:flutter/material.dart';
 
 class Expense {
@@ -159,6 +159,11 @@ class Item {
   void setOwner(Owner owner) {
     this.owner = owner;
   }
+
+  @override
+  String toString() {
+    return "Item: {name: $name, owner: $owner, cost: $cost}";
+  }
 }
 
 class Owner {
@@ -210,5 +215,15 @@ class Owner {
   void addItem(Item item) {
     items.add(item);
     _updateTotalCost(item);
+  }
+
+  void removeItem(Item item) {
+    items.remove(item);
+    _updateTotalCost(item);
+  }
+
+  @override
+  String toString() {
+    return "Owner: {name: $name, items: $items, cost: $cost}";
   }
 }

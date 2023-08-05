@@ -41,4 +41,9 @@ class Date {
     return {'month': month, 'day': day, 'year': year, 'hour': hour, 'minute': minute};
   }
 
+  @override
+  String toString() {
+    return "${months[month]} $day, $year at $hour:$minute";
+  }
+
 }

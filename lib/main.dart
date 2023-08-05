@@ -1,9 +1,11 @@
+import 'dart:developer';
+
 import 'package:abg_app/common/theme.dart';
-import 'package:abg_app/models/transactionRecord.dart';
+import 'package:abg_app/models/transaction_record.dart';
 import 'package:abg_app/screens/log.dart';
-import 'package:abg_app/screens/normalSplit/normalSplit.dart';
-import 'package:abg_app/screens/PerItemSplit/ImageProcessing/takePicturePage.dart';
-import 'package:abg_app/screens/PerItemSplit/ImageProcessing/viewPicture.dart';
+import 'package:abg_app/screens/normalSplit/normal_split.dart';
+import 'package:abg_app/screens/PerItemSplit/ImageProcessing/take_picture_page.dart';
+import 'package:abg_app/screens/PerItemSplit/ImageProcessing/view_picture.dart';
 import 'package:camera/camera.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
@@ -137,6 +139,7 @@ class HomePage extends StatelessWidget {
                 fixedSize: Size(250, 75) 
               ),
               onPressed: () {
+                log("Pushing Normal Split");
                 context.push('/normalSplit');
               },
               child: Text(

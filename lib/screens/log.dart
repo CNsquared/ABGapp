@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-import '../models/transactionRecord.dart';
+import '../common/expenses.dart';
+import '../models/transaction_record.dart';
 
 ///Displays the logged transations in [TransactionRecord]
 class Log extends StatelessWidget {
@@ -32,10 +33,27 @@ class Log extends StatelessWidget {
         itemCount: expenses.length,
         itemBuilder: (context, index) {
           return ListTile(
-            title: Text(expenses[index].iD.toString()),
+            title: expenseCard(expense: expenses[index]),
           );
         },
       ),
     );
   }
+
+
+  Widget expenseCard({required Expense expense}){
+    return Card(
+      child: Column(
+        children: [
+          Text("ID: ${expense.iD}"),
+          Text("Date: ${expense.date}"),
+          Text("Tip: ${expense.tip}"),
+          Text("Tax: ${expense.tax}"),
+          Text("Num People: ${expense.numPeople}"),
+          Text("People: ${expense.people}"),
+        ],
+      ),
+    );
+  }
 }
+

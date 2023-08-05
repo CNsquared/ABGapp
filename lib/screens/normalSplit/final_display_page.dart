@@ -3,8 +3,8 @@
 import 'dart:developer';
 
 import 'package:abg_app/common/expenses.dart';
-import 'package:abg_app/common/paymentCalculator.dart';
-import 'package:abg_app/models/transactionRecord.dart';
+import 'package:abg_app/common/payment_calculator.dart';
+import 'package:abg_app/models/transaction_record.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
