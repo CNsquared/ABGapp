@@ -55,7 +55,8 @@ class TransactionRecord extends ChangeNotifier {
         log("jsonString: $jsonString");
         if (jsonString != "") {
           List json = jsonDecode(jsonString);
-          expenses = json.map((expenseJson) => Expense.fromJson(expenseJson)).toList();
+          expenses =
+              json.map((expenseJson) => Expense.fromJson(expenseJson)).toList();
           log("Set expenses as ${expenses.toString()}");
         } else {
           log("Log file blank");
@@ -70,15 +71,20 @@ class TransactionRecord extends ChangeNotifier {
   }
 
   ///Adds a [_Transaction] into the record
-  Future<void> addTransaction({required tax, required tip, required numPeople, required splittingMethod}) async{
+  Future<void> addTransaction(
+      {required tax,
+      required tip,
+      required numPeople,
+      required splittingMethod,
+      items}) async {
     var expense = Expense(
         iD: iD,
-        date: Date.fromDate(DateTime.now()),  
+        date: Date.fromDate(DateTime.now()),
         splittingMethod: splittingMethod,
         tax: tax,
         tip: tip,
-        numPeople: numPeople
-    );
+        numPeople: numPeople,
+        items: items);
     expenses.add(expense);
     log("added new expense to tracker: ${expenses.toString()}");
 
@@ -88,7 +94,6 @@ class TransactionRecord extends ChangeNotifier {
     //writes to file every time maybe only do it on exit
     await writeRecord();
     notifyListeners();
-    
   }
 
   //rewrites every single log, should just appened

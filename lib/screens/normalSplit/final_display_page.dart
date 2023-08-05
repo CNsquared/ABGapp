@@ -1,5 +1,3 @@
-
-
 import 'dart:developer';
 
 import 'package:abg_app/common/expenses.dart';
@@ -94,11 +92,12 @@ class DisplayAmountDue extends StatelessWidget {
     Expense latestTransaction = logState.expenses.last;
 
     return ListView.builder(
-        itemCount: latestTransaction.people.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text("Amount Due: ${latestTransaction.people[index].cost}"),
-          );
-        },);
+      itemCount: latestTransaction.people.length,
+      itemBuilder: (context, index) {
+        return ListTile(
+          title: Text("Amount Due: ${latestTransaction.people[index].cost}"),
+        );
+      },
+    );
   }
 }

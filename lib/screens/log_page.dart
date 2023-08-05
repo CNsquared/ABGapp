@@ -5,20 +5,17 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:expansion_tile_card/expansion_tile_card.dart';
 
-
 import '../common/expenses.dart';
 import '../models/transaction_record.dart';
 
 ///Displays the logged transations in [TransactionRecord]
 class Log extends StatelessWidget {
-
   static const String routeName = "/log";
 
   @override
   Widget build(BuildContext context) {
     var logState = context.watch<TransactionRecord>();
     var expenses = logState.expenses;
-
 
     log("current expenses to show: $expenses");
 
@@ -46,20 +43,16 @@ class Log extends StatelessWidget {
     );
   }
 
-
-  Widget expenseCard({required Expense expense}){
-
+  Widget expenseCard({required Expense expense}) {
     return ExpansionTileCard(
-       title: Text("Date: ${expense.date}"), 
-       children: [
-          Text("ID: ${expense.iD}"),
-          Text("Tip: ${expense.tip}"),
-          Text("Tax: ${expense.tax}"),
-          Text("Num People: ${expense.numPeople}"),
-          Text("People: ${expense.people}"),
-        ],
+      title: Text("Date: ${expense.date}"),
+      children: [
+        Text("ID: ${expense.iD}"),
+        Text("Tip: ${expense.tip}"),
+        Text("Tax: ${expense.tax}"),
+        Text("Num People: ${expense.numPeople}"),
+        Text("People: ${expense.people}"),
+      ],
     );
   }
-
 }
-

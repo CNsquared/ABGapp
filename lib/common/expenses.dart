@@ -36,7 +36,7 @@ class Expense {
       case ("equal"):
         double sum = tax + tip;
         for (Item i in items) {
-          sum += i.cost;
+          sum += i.cost ?? 0;
         }
 
         double amountPerPerson =
@@ -70,9 +70,7 @@ class Expense {
   }
 
   factory Expense.fromJson(dynamic json) {
-
     log("making expense from json: ${json.toString()}");
-
 
     var itemsObjsJson = json['items'] as List;
     List items =
@@ -139,10 +137,14 @@ class Expense {
 
 class Item {
   Owner? owner;
-  String name;
-  double cost;
+  String? name;
+  double? cost;
 
-  Item({required this.name, this.owner, required this.cost});
+  set setOwner(Owner? owner) => this.owner = owner;
+  set setName(String? name) => this.name = name;
+  set setCost(cost) => this.cost = cost;
+
+  Item({this.name, this.owner, this.cost});
 
   Item.fromJson(Map<String, dynamic> json)
       : owner = json['owner'] as Owner,
@@ -154,10 +156,6 @@ class Item {
         this.owner != null ? this.owner!.toJson() : null;
 
     return {'owner': owner, 'name': name, 'cost': cost};
-  }
-
-  void setOwner(Owner owner) {
-    this.owner = owner;
   }
 
   @override
@@ -179,11 +177,11 @@ class Owner {
   }
 
   double calculateTotalItemCost() {
-    log( "Calculating total item cost");
+    log("Calculating total item cost");
     var sum = 0.0;
 
     for (Item i in items) {
-      sum += i.cost;
+      sum += i.cost ?? 0;
     }
 
     return sum;
@@ -209,7 +207,7 @@ class Owner {
   // ! In order to update total cost the method needs to know how to spilt the cost, wether spilting the tax and tip evenly or per item
   // ! Design choice of passing down that information
   void _updateTotalCost(Item item) {
-    cost += item.cost;
+    cost += item.cost ?? 0;
   }
 
   void addItem(Item item) {

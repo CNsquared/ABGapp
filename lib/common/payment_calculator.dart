@@ -2,8 +2,7 @@ class PaymentCalculator {
   var taxRate;
 
   static double splitValue({required double value, required int numOfPeople}) {
-
-    if(numOfPeople == 0) return value;
+    if (numOfPeople == 0) return value;
 
     var splitValue = value / numOfPeople;
 

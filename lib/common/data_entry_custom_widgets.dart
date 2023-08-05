@@ -21,35 +21,36 @@ class EntryForm extends StatelessWidget {
             FilteringTextInputFormatter.allow(RegExp(r'(\d+)?\.?\d{0,2}'));
         break;
       case "integer":
-        inputFormatter = FilteringTextInputFormatter.allow(RegExp(r"[0-9]"));
       default:
-        null;
+        inputFormatter = FilteringTextInputFormatter.allow(RegExp(r"[0-9]"));
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 16),
-      child: TextFormField(
-        controller: controller,
-        style: const TextStyle(fontSize: 20, color: Colors.black),
-        decoration: InputDecoration(
-          enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.black),
+      child: Card(
+        child: TextFormField(
+          controller: controller,
+          style: const TextStyle(fontSize: 20, color: Colors.black),
+          decoration: InputDecoration(
+            enabledBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.black),
+            ),
+            focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black)),
+            labelText: prompt,
+            prefixIcon: Padding(
+              padding: const EdgeInsetsDirectional.only(start: 5),
+              child: icon,
+            ),
           ),
-          focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.black)),
-          labelText: prompt,
-          prefixIcon: Padding(
-            padding: const EdgeInsetsDirectional.only(start: 5),
-            child: icon,
-          ),
+          keyboardType: const TextInputType.numberWithOptions(decimal: true),
+          inputFormatters: [
+            inputFormatter,
+          ],
         ),
-        keyboardType: const TextInputType.numberWithOptions(decimal: true),
-        inputFormatters: [
-          inputFormatter,
-        ],
       ),
     );
   }

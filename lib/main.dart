@@ -97,7 +97,6 @@ class MyApp extends StatelessWidget {
 // TODO add animations to go router
 
 class HomePage extends StatelessWidget {
-
   static const String routeName = "/";
 
   @override
@@ -110,9 +109,8 @@ class HomePage extends StatelessWidget {
           icon: Icon(
             Icons.wb_sunny_outlined,
             color: themeData.iconColor,
-            ),
+          ),
           onPressed: () {
-            
             themeData.toggleTheme();
           },
         ),
@@ -137,11 +135,11 @@ class HomePage extends StatelessWidget {
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                side: BorderSide(width: 5, color: Colors.grey),
-                elevation: 5,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                fixedSize: Size(250, 75) 
-              ),
+                  side: BorderSide(width: 5, color: Colors.grey),
+                  elevation: 5,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  fixedSize: Size(250, 75)),
               onPressed: () {
                 log("Pushing Normal Split");
                 context.push(NormalSplit.routeName);
@@ -155,15 +153,15 @@ class HomePage extends StatelessWidget {
             ElevatedButton(
               onPressed: () async {
                 //getting cameras from the device and using the first one
-                await availableCameras()
-                    .then((value) => context.push(TakePicturePage.routeName, extra: value[0]));
+                await availableCameras().then((value) =>
+                    context.push(TakePicturePage.routeName, extra: value[0]));
               },
               style: ElevatedButton.styleFrom(
-                side: BorderSide(width: 5, color: Colors.grey),
-                elevation: 5,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                fixedSize: Size(250, 75) 
-              ),
+                  side: BorderSide(width: 5, color: Colors.grey),
+                  elevation: 5,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  fixedSize: Size(250, 75)),
               child: Text(
                 "Diving Per Item",
                 style: TextStyle(
@@ -179,11 +177,11 @@ class HomePage extends StatelessWidget {
                     .then((value) => context.push(Log.routeName));
               },
               style: ElevatedButton.styleFrom(
-                side: BorderSide(width: 5, color: Colors.grey),
-                elevation: 5,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                fixedSize: Size(250, 75) 
-              ),
+                  side: BorderSide(width: 5, color: Colors.grey),
+                  elevation: 5,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  fixedSize: Size(250, 75)),
               child: Text(
                 "Past Logs",
                 style: TextStyle(

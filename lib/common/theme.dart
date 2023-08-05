@@ -5,7 +5,6 @@ class ThemeModel extends ChangeNotifier {
   ThemeData theme = Themes.darkTheme;
   Color iconColor = Color(0xFF363949);
 
-
   bool get isDarkMode => _isDarkMode;
 
   void toggleTheme() {
@@ -32,7 +31,6 @@ class Themes {
         error: Colors.red,
       ),
       fontFamily: 'Georgia',
-
       iconTheme: IconThemeData(
         color: Color(0xFF363949),
       ),
@@ -56,7 +54,6 @@ class Themes {
         error: Colors.red,
       ),
       fontFamily: 'Georgia',
-
       iconTheme: IconThemeData(
         color: Color(0xFFFFF8E7),
       ),
