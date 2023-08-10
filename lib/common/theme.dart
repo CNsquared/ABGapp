@@ -34,6 +34,11 @@ class Themes {
       iconTheme: IconThemeData(
         color: Color(0xFF363949),
       ),
+      inputDecorationTheme: InputDecorationTheme(
+        labelStyle: TextStyle(color: Colors.black),
+        prefixIconColor: Colors.black,
+        prefixStyle: TextStyle(color:Colors.black)
+      ),
 
       // Define the default `TextTheme`. Use this to specify the default
       // text styling for headlines, titles, bodies of text, and more.
@@ -56,6 +61,14 @@ class Themes {
       fontFamily: 'Georgia',
       iconTheme: IconThemeData(
         color: Color(0xFFFFF8E7),
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        labelStyle: TextStyle(color: Colors.white),
+        prefixIconColor: Colors.white,
+        prefixStyle: TextStyle(color:Colors.white),
+        hoverColor: Colors.white,
+        suffixStyle: TextStyle(color: Colors.white),
+        focusColor: Colors.white
       ),
 
       // Define the default `TextTheme`. Use this to specify the default
