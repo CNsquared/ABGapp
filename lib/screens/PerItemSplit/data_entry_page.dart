@@ -163,9 +163,14 @@ class _DataState extends State<DataEntryPage> {
                 if (dataFilledItem()) {
                   setState(() {});
                   items.add(item!);
+                  item = null;
+                  textControllers["itemName"]!.clear();
+                  textControllers["itemCost"]!.clear();
+                  FocusScope.of(context).unfocus();
+                  Navigator.of(context).pop();
                 }
 
-                Navigator.of(context).pop();
+                
               },
             ),
           ],
