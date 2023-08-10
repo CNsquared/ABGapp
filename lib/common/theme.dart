@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ThemeModel extends ChangeNotifier {
-  bool _isDarkMode = false;
+  bool _isDarkMode = true;
   ThemeData theme = Themes.darkTheme;
-  Color iconColor = Color(0xFF363949);
+  Color iconColor = Color(0xFFFFF8E7);
 
   bool get isDarkMode => _isDarkMode;
 
