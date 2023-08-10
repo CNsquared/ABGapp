@@ -36,8 +36,6 @@ class TransactionRecord extends ChangeNotifier {
   }
 
   //intializes each time enters logs
-  // costly operation should proberely be relpleaced with an intialized boolean and then only runs the code if it hasnt before
-  //TODO JSON HELL
   Future<void> intializeRecord() async {
     if (initialized) {
       log("Log file already initialized");
@@ -49,7 +47,6 @@ class TransactionRecord extends ChangeNotifier {
 
     await _logFile.then((value) {
       try {
-        initialized = true;
         log("starting intialization of log file");
         String jsonString = value.readAsStringSync();
         log("jsonString: $jsonString");

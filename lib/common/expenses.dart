@@ -4,6 +4,8 @@ import 'package:abg_app/common/date.dart';
 import 'package:abg_app/common/payment_calculator.dart';
 import 'package:flutter/material.dart';
 
+import 'friend.dart';
+
 class Expense {
   //metadata
   int iD;
@@ -11,6 +13,7 @@ class Expense {
   int numPeople;
 
   List<Owner> people;
+  Map<Friend, Item> itemOwners;
   List<Item> items;
   double tax;
   double tip;
@@ -26,7 +29,8 @@ class Expense {
     List<Item>? items,
     List<Owner>? people,
   })  : items = items ?? List.empty(growable: true),
-        people = people ?? List.empty(growable: true) {
+        people = people ?? List.empty(growable: true),
+        itemOwners = <Friend, Item>{} {
     calculateCostPerPerson();
   }
 

@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:abg_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +29,7 @@ class Log extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            context.go("/home");
+            context.go(HomePage.routeName);
           },
         ),
       ),
@@ -52,6 +53,7 @@ class Log extends StatelessWidget {
         Text("Tax: ${expense.tax}"),
         Text("Num People: ${expense.numPeople}"),
         Text("People: ${expense.people}"),
+        Text("Items: ${expense.items}"),
       ],
     );
   }

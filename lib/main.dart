@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:abg_app/common/theme.dart';
 import 'package:abg_app/models/transaction_record.dart';
+import 'package:abg_app/screens/friends_page.dart';
 import 'package:abg_app/screens/log_page.dart';
 import 'package:abg_app/screens/normalSplit/normal_split.dart';
 import 'package:abg_app/screens/PerItemSplit/ImageProcessing/take_picture_page.dart';
@@ -9,7 +10,10 @@ import 'package:abg_app/screens/PerItemSplit/ImageProcessing/view_picture.dart';
 import 'package:camera/camera.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 import 'package:provider/provider.dart';
+
+import 'models/friends_record.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,26 +34,50 @@ GoRouter router() {
       ),
       GoRoute(
         path: NormalSplit.routeName,
-        builder: (context, state) => NormalSplit(),
+        pageBuilder: (context, state) => buildPageWithDefaultTransition(
+            context: context, state: state, child: NormalSplit()),
       ),
       GoRoute(
         path: Log.routeName,
-        builder: (context, state) => Log(),
+        pageBuilder: (context, state) => buildPageWithDefaultTransition(
+            context: context, state: state, child: Log()),
       ),
       GoRoute(
         path: ViewPicture.routeName,
-        builder: (context, state) => ViewPicture(),
+        pageBuilder: (context, state) => buildPageWithDefaultTransition(
+            context: context, state: state, child: ViewPicture()),
       ),
       GoRoute(
         path: TakePicturePage.routeName,
-        builder: (context, state) {
+        pageBuilder: (context, state) {
           CameraDescription camera = state.extra as CameraDescription;
-          return TakePicturePage(
-            camera: camera,
-          );
+          return buildPageWithDefaultTransition(
+              context: context,
+              state: state,
+              child: TakePicturePage(
+                camera: camera,
+              ));
         },
       ),
+      GoRoute(
+        path: FriendsPage.routeName,
+        pageBuilder: (context, state) => buildPageWithDefaultTransition(
+            context: context, state: state, child: FriendsPage()),
+      ),
     ],
+  );
+}
+
+CustomTransitionPage buildPageWithDefaultTransition<T>({
+  required BuildContext context,
+  required GoRouterState state,
+  required Widget child,
+}) {
+  return CustomTransitionPage<T>(
+    key: state.pageKey,
+    child: child,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+        FadeTransition(opacity: animation, child: child),
   );
 }
 
@@ -65,11 +93,12 @@ class MyApp extends StatelessWidget {
       //Using [GoRouter] to go between pages in the app
       providers: [
         ChangeNotifierProvider<TransactionRecord>(
-          create: (BuildContext context) => TransactionRecord(),
+          create: (_) => TransactionRecord(),
         ),
         ChangeNotifierProvider<ThemeModel>(
           create: (_) => ThemeModel(),
-        )
+        ),
+        ChangeNotifierProvider<FriendsRecord>(create: (_) => FriendsRecord()),
       ],
 
       child: Consumer<ThemeModel>(
@@ -118,7 +147,7 @@ class HomePage extends StatelessWidget {
           IconButton(
             icon: Image.asset('images/chaewon.jpeg'),
             onPressed: () {
-              context.push('/viewImage');
+              context.push(FriendsPage.routeName);
             },
           )
         ],

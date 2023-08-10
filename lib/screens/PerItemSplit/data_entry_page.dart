@@ -87,8 +87,7 @@ class _DataState extends State<DataEntryPage> {
                     item = Item();
                     _showMyDialog();
                   },
-                  child: Text("Add Item")
-              ),
+                  child: Text("Add Item")),
               ListView.builder(
                   shrinkWrap: true,
                   itemCount: items.length,
@@ -152,12 +151,20 @@ class _DataState extends State<DataEntryPage> {
           ),
           actions: <Widget>[
             TextButton(
+              child: const Text('Cancel'),
+              onPressed: () {
+                item = null;
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
               child: const Text('Add'),
               onPressed: () {
-                setState(() {
-                  
-                });
-                items.add(item!);
+                if (dataFilledItem()) {
+                  setState(() {});
+                  items.add(item!);
+                }
+
                 Navigator.of(context).pop();
               },
             ),
@@ -167,6 +174,11 @@ class _DataState extends State<DataEntryPage> {
     );
   }
 
+  bool dataFilledItem() {
+    return (item!.name != null && item!.cost != null);
+  }
+
+  ///Clear button for the [DataEntryPage] that clears all the text fields
   ElevatedButton clearButton() {
     return ElevatedButton(
         onPressed: () {
@@ -192,7 +204,7 @@ class _DataState extends State<DataEntryPage> {
           FocusScope.of(context).unfocus();
           await logState.intializeRecord();
 
-          if (dataFilled()) {
+          if (dataFilledExpense()) {
             await logState.addTransaction(
                 tax: tax,
                 tip: tip,
@@ -208,7 +220,7 @@ class _DataState extends State<DataEntryPage> {
                 color: Theme.of(context).textTheme.bodyMedium?.color)));
   }
 
-  bool dataFilled() {
+  bool dataFilledExpense() {
     return (numPeople != null && tax != null && tip != null);
   }
 }

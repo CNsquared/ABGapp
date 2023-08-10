@@ -7,6 +7,7 @@ class EntryForm extends StatelessWidget {
   final String prompt;
   final Icon icon;
   late final FilteringTextInputFormatter inputFormatter;
+  late final TextInputType keyboardType;
 
   EntryForm({
     super.key,
@@ -16,13 +17,19 @@ class EntryForm extends StatelessWidget {
     String? filter,
   }) : icon = icon ?? Icon(Icons.face_2_sharp) {
     switch (filter) {
+      case "name":
+        inputFormatter = FilteringTextInputFormatter.allow(RegExp(r"[a-zA-Z]"));
+        keyboardType = TextInputType.name;
+        break;
       case "money":
         inputFormatter =
             FilteringTextInputFormatter.allow(RegExp(r'(\d+)?\.?\d{0,2}'));
+        keyboardType = const TextInputType.numberWithOptions(decimal: true);
         break;
       case "integer":
       default:
         inputFormatter = FilteringTextInputFormatter.allow(RegExp(r"[0-9]"));
+        keyboardType = const TextInputType.numberWithOptions(decimal: false);
     }
   }
 
@@ -46,7 +53,7 @@ class EntryForm extends StatelessWidget {
               child: icon,
             ),
           ),
-          keyboardType: const TextInputType.numberWithOptions(decimal: true),
+          keyboardType: keyboardType,
           inputFormatters: [
             inputFormatter,
           ],
